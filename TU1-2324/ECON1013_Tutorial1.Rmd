@@ -1,0 +1,279 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "Jan 2024"
+institute: University of Glasgow
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  slidy_presentation: default
+  ioslides_presentation: default
+  pdf_document: default
+subtitle: 'ECON1013: TUTORIAL 1'
+fontsize: 11pt
+geometry: left = 1cm, right = 0.5cm, top = 0.5cm, bottom = 0.5cm
+linestretch: 1.5
+linkcolor: blue
+header-includes:
+- \titlegraphic{\includegraphics[scale=0.05]{pictures/GlaLogo.pdf}}
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{array}
+- \usepackage{longtable}
+# - \useinnertheme{rectangles}
+# - \setbeamertemplate{itemize item}{\scriptsize$\bowtie$}
+- \setbeamertemplate{itemize item}{$\diamond$}
+- \setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+- \setbeamertemplate{itemize subsubitem}{\scriptsize$\gg$}
+---
+
+## Intro
+
++ Duong Trinh
+  + PhD Student in Economics (Bayesian Microeconometrics)
+  + Email: \underline{Duong.Trinh@glasgow.ac.uk}
+
+\vspace{3mm}
+
+<!-- + ECON1013-TU04 -->
+<!--   + Monday 12-1 pm -->
+<!--   + 4 sessions (22-Jan, 5-Feb, 19-Feb, 4-March) -->
+  
+<!-- + ECON1013-TU07 -->
+<!--   + Tuesday 2-3 pm -->
+<!--   + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March) -->
+
++ ECON1013-TU08
+  + Tuesday 3-4 pm
+  + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March)
+
+## Record Attendance
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU1-2324/pictures/QRcodeAtd_TU04.png")
+```
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU1-2324/pictures/QRcodeAtd_TU07.png")
+```
+
+```{r, echo=FALSE, eval=TRUE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU1-2324/pictures/QRcodeAtd_TU08.png")
+```
+
+## Exercise 1
+A group of $11$ former college students are interviewed $10$ years after their graduation. Their incomes are as follows (in $1,000$ pounds):
+$$
+\{20, 22, 23, 23, 25, 28, 28, 30, 30, 34, 160\}
+$$
+For this sample, we have calculated the following summary statistics:
+
++ Sample average $\approx 38.5$
+
++ Sample median $28$
+
++ Sample standard deviation $40.5$
+
++ Interquartile range $7$ (from $23$ to $30$)
+
+## Exercise 1
+A group of $11$ former college students are interviewed $10$ years after their graduation. Their incomes are as follows (in $1,000$ pounds):
+$$
+\{20, 22, 23, 23, 25, 28, 28, 30, 30, 34, 160\}
+$$
+
+a. We wish to measure the central tendency in this sample. Which measure is the most appropriate? (You can use the summary statistics provided above or other measures.) Argue.
+
+b. We wish to measure the variability in this sample. Which measure is the most appropriate? (You can use the summary statistics provided above or other measures.) Argue.
+
+c. Construct a box-and-whisker plot of the data.
+
+d. There was a reporting mistake in the data set - the largest value is actually $360$ instead of $160$. How do the summary statistics change? Do your answers to questions 1 and 2 change?
+
+## (a) We wish to measure the central tendency in this sample. Which measure is the most appropriate?
+
+\pause
+
+```{r, echo=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU1-2324/pictures/Central Tendency.png")
+```
+
+## (a) We wish to measure the central tendency in this sample. Which measure is the most appropriate?
+
++ The distribution is characterised by a cluster of observations around $30$ and a single large outlier. 
+
++ Because of this outlier, sample mean is significantly larger than the values in the main cluster of observations. 
+
++ Sample median gives a more accurate description of the main cluster of observations.
+
+## (b) We wish to measure the variability in this sample. \quad Which measure is the most appropriate?
+
+\pause
+
+```{r, echo=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU1-2324/pictures/Variability.png")
+```
+
+## (b) We wish to measure the variability in this sample. \quad Which measure is the most appropriate?
+
++ The sample standard deviation depends on the sample mean. Since the sample mean is affected by the single outlier, so is the sample standard deviation. As a consequence, the sample standard deviation is high, which indicates a high degree of variability in the data. 
+
++ However, in the main cluster of observations, values are relatively close to each other.
+
++ This is more informatively summarized by the interquartile range ($7$), which indicates a relatively low degree of variability in the data.
+
+## (c) Construct a box-and-whisker plot of the data.
+
+\pause
+
++ The box-and-whisker plot usually displays $5$ values:  
+The minimum, the $25^{th}$ percentile, the median, the $75^{th}$ percentile, and the maximum. 
+
+```{r, echo=FALSE, out.width='70%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU1-2324/pictures/Box-and-Whisker.png")
+```
+
+
+## (d) There was a reporting mistake in the data set - the largest value is actually $360$ instead of $160$. How do the summary statistics change? Do your answers to questions 1 and 2 change?
+
+\pause
+
+Our summary statistics change as follows:
+
+```{r, echo=FALSE, eval=FALSE}
+# x <- c(20, 22, 23, 23, 25, 28, 28, 30, 30, 34, 160)
+# y <- c(20, 22, 23, 23, 25, 28, 28, 30, 30, 34, 360)
+# mean(x)
+# sd(x)
+# mean(y)
+# sd(y)
+```
+
+
++ Sample average $\approx 56.6$
+
++ Sample median $28$
+
++ Sample standard deviation $100.7$
+
++ Interquartile range $7$ (from $23$ to $30$)
+
+Sample median and interquartile range are not affected by the value of the outlier.
+
+
+## Exercise 2
+Consider the sample $\{X_1, X_2, \ldots, X_n\}$.
+
+a. Show that $\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$ is the solution of minimization problem:
+$$
+\tag{1}
+\underset{c}{\text{min}} \sum_{i=1}^{n} \left(X_i - c\right)^2
+$$
+
+b. What is the interpretation of the function $\sum_{i=1}^{n} \left(X_i - c\right)^2$?
+
+*(The aim of this exercise is justify the use of the sample average).*
+
+## (a) Show that $\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$ is the solution of \quad  minimization problem $(1)$
+
+\pause
+
++ Let $h(c) = \sum_{i=1}^{n} \left(X_i - c\right)^2 = \sum_{i=1}^{n}\left(X_i^2  - 2 X_i c + c^2\right)$
+
+\pause
+
++ To find the minimum, we take the first-order condition w.r.t. $c$:
+$$
+h'(c) = \sum_{i=1}^{n} \left(-2 X_i + 2 c\right) = -2\sum_{i=1}^n \left(X_i-c\right)
+$$
+
+\pause
+
++ We wish to solve for $c$ such that $h'(c) = 0$: 
+$$
+\begin{aligned}
+h'(c) = 0 &\Leftrightarrow \sum_{i=1}^n \left(X_i-c\right) = 0\\
+&\Leftrightarrow \left(X_1-c\right) + \left(X_2-c\right) + \ldots + \left(X_n-c\right) = 0\\
+&\Leftrightarrow -nc + \sum_{i=1}^{n} X_i = 0\\
+&\Leftrightarrow c = \frac{1}{n} \sum_{i=1}^n X_i
+\end{aligned}
+$$
+which is what we wanted to show.
+
+## (b) What is the interpretation of the function $\sum_{i=1}^{n} \left(X_i - c\right)^2$?
+
++ The term $X_i-c$ is the difference between each observation and some constant $c$. These differences are sometimes positive and sometimes negative - but if we square them, they are always positive. 
+
++ The summation $\sum_{i=1}^n \left(X_i-c\right)$ gives us the sum of squared differences. When we solve the minimization, we are looking for the value of c such that the sum of squared differences between each observation and $c$ is the smallest possible.
++ In other words, we are looking for $c$ such that $c$ is closest possible to different values of $X_i$, when "closest possible" is measured by the squared differences.
++ Thus, the sample mean is the quantity which minimizes the sum of squared differences in the data.
+
+## (b) What is the interpretation of the function $\sum_{i=1}^{n} \left(X_i - c\right)^2$?
+
+**Remark.**
+Notice that the sample median is the solution of the problem:
+$$
+\tag{2}
+\underset{c}{\text{min}} \sum_{i=1}^{n} \mid X_i - c\mid
+$$
+
++ Thus, while sample mean minimizes sum of squared differences, sample median minimizes the sum of absolute differences.
++ The "best" measure of central tendency depends on the measure of distance that we want to minimize.
+
+## Exercise 3
+
+a. Show that $\sum_{i=1}^n \left(X_i - \bar{X}_n\right)^2 = \sum_{i=1}^n X_i^2 - n \bar{X}_n^2$.  
+What is this estimator?
+
+\vspace{3mm}
+
+b. Show that $\sum_{i=1}^n \left(X_i - \bar{X}_n\right)\left(Y_i - \bar{Y}_n\right) = \sum_{i=1}^n \left(X_i - \bar{X}_n\right)Y_i = \sum_{i=1}^n X_i Y_i - n\bar{X}_n\bar{Y}_n$.  
+What is this estimator?
+
+## (a) Show that $\sum_{i=1}^n \left(X_i - \bar{X}_n\right)^2 = \sum_{i=1}^n X_i^2 - n \bar{X}_n^2$.  
+
+\pause
+
+We are showing a property related to *sample variance*.
+
+\pause
+
+$$
+\begin{aligned}
+\sum_{i=1}^n \left(X_i - \bar{X}_n\right)^2  &= \sum_{i=1}^n \left(X_i^2 - 2X_i\bar{X}_n + \bar{X}_n^2\right)\\
+&= \sum_{i=1}^n X_i^2  - 2 \bar{X}_n \sum_{i=1}^n X_i + n \bar{X}_n^2\\
+&= \sum_{i=1}^n X_i^2  - 2 \bar{X}_n \cdot n \bar{X}_n + n \bar{X}_n^2\\
+&= \sum_{i=1}^n X_i^2  - 2n \bar{X}_n^2 + n \bar{X}_n^2\\
+&= \sum_{i=1}^n X_i^2 - n \bar{X}_n^2
+\end{aligned}
+$$
+proving the result.
+
+## (b) Show that $\sum_{i=1}^n \left(X_i - \bar{X}_n\right)\left(Y_i - \bar{Y}_n\right) = \sum_{i=1}^n \left(X_i - \bar{X}_n\right)Y_i = \sum_{i=1}^n X_i Y_i - n\bar{X}_n\bar{Y}_n$.
+
+\pause
+
+We are showing a property related to *sample covariance*.
+
+\pause
+
+$$
+\begin{aligned}
+\sum_{i=1}^n \left(X_i - \bar{X}_n\right)\left(Y_i - \bar{Y}_n\right) &= \sum_{i=1}^n \left(X_i - \bar{X}_n\right)Y_i - \sum_{i=1}^n \left(X_i - \bar{X}_n\right)\bar{Y}_n\\
+&= \sum_{i=1}^n \left(X_i - \bar{X}_n\right)Y_i\\
+\end{aligned}
+$$  
+because $\sum_{i=1}^n\left(X_i - \bar{X}_n\right) = \sum_{i=1}^n X_i - n\bar{X}_n = 0$.  
+
+It follows that
+$$ 
+\sum_{i=1}^n \left(X_i - \bar{X}_n\right)Y_i = \sum_{i=1}^n X_iY_i - \bar{X}_n\sum_{i=1}^nY_i = \sum_{i=1}^n X_iY_i - n\bar{X}_n\bar{Y}_n.
+$$
+
