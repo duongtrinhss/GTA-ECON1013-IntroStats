@@ -1,0 +1,344 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "March 2022"
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  slidy_presentation: default
+  ioslides_presentation: default
+subtitle: 'ECON1013: LAB 3'
+fontsize: 10pt
+institute: University of Glasgow
+---
+
+# PRELIMINARIES
+## Estimation and Hypothesis Testing
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GLASGOW/GTA/ECON1013/Labs/Lab 3/Case.png")
+```
+
+# Exercise 1
+## Picture the Scenario
+\begin{itemize}
+    \item \textbf{Objective}: The manager at a plant that bottles drinking water wants to be sure that the process to fill one-gallon bottles is operating properly ($1$ gallon $\approx 3.785$ liters). Currently, the company is testing the volumes of one-gallon bottles. A random sample of 75 one-gallon bottles is tested. 
+    \vspace{3mm}
+    \item \textbf{Dataset}: \texttt{Water.csv}
+\end{itemize}
+
+
+## Questions
+\begin{enumerate}
+    \item[(a)] Find the $95\%$ confidence interval estimate of the population mean volume.
+    \vspace{3mm}
+    \item[(b)] Without doing calculations, state whether an $80\%$ confidence interval for the population mean would be wider than, narrower than or the same as the answer to part (a).
+    \vspace{3mm}
+    \item[(c)] Without dong calculations, test the null hypothesis $H_0:\mu=3.785$ against the $H_1:\mu\neq 3.785$ at $1\%$ significance level.
+\end{enumerate}
+
+## Solution
+```{r}
+# Load Dataset
+Water <- read.csv('Water.csv')
+str(Water)
+# Volumes of bottles in the sample
+x <- Water$Weights
+```
+
+## (a) Find the $95\%$ confidence interval estimate of the population mean volume.
+The $100(1 -\alpha)\%$ confidence interval for the population mean (when population variance is unknown) is given by:
+$$
+LB = \bar{x} - t_{n-1,\frac{\alpha}{2}}\times\frac{s}{\sqrt{n}} \quad \text{and} \quad UB = \bar{x} + t_{n-1,\frac{\alpha}{2}}\times\frac{s}{\sqrt{n}}
+$$
+where $t_{n-1,\frac{\alpha}{2}}$ is  the critical value of the $t$ distribution with $n-1$ degrees of freedom satisfying:
+$$
+P\left(\frac{\bar{X}-\mu}{s/\sqrt{n}} > t_{n-1,\frac{\alpha}{2}}\right) = \frac{\alpha}{2}
+$$
+
+## (a) Find the $95\%$ confidence interval estimate of the population mean volume.
+```{r}
+# Compute the level of significance
+alpha <- 1 - 0.95
+# Compute the sample size
+n <- length(x)
+# Compute the critical value t_c from the t-distribution with n-1 d.f.
+t_c <- qt(alpha/2, n-1, lower.tail = FALSE)
+# Compute the lower bound (lb) and the upper bound (ub)
+lb <-  mean(x) - t_c*sd(x)/sqrt(n)
+ub <-  mean(x) + t_c*sd(x)/sqrt(n)
+# Compute the confidence interval manually
+c(lb,ub)
+```
+
+## (a) Find the $95\%$ confidence interval estimate of the population mean volume.
+```{r}
+# Alternative: Use the command in R
+t.test(x)
+```
+
+## (a) Find the $95\%$ confidence interval estimate of the population mean volume.
+(!) \textcolor{red}{Interpretation}
+\begin{itemize}
+    \item We are $95\%$ confident that the true mean volume is between $3.7843$ and $3.8314$ kg
+    \item Although the true mean may or may not be in this interval, $95\%$ of intervals formed in this manner will contain the true mean
+\end{itemize}
+
+```{r, echo=FALSE, out.width="90%", fig.cap="Sample Distribution of the Mean."}
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GLASGOW/GTA/ECON1013/Labs/Lab 3/Mean Distribution.png")
+```
+
+
+## (b) Whether an $80\%$ confidence interval for the population mean would be wider than, narrower than or the same as the answer to part (1).
+
+Length of the $100(1 -\alpha)\%$ confidence interval is:
+$$
+UB - LB = 2 \times t_{n-1,\frac{\alpha}{2}}\times\frac{s}{\sqrt{n}}
+$$
+
+```{r eval=TRUE,message=FALSE, out.width="60%", fig.cap = "Student t distribution (df = n-1)", echo=FALSE}
+library(ggplot2)
+ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dt, args = c(75), geom = 'area', 
+                xlim = c(qt(1-0.2/2,74),5), fill = 4) +
+  stat_function(fun = dt, args = c(75)) +
+  labs(x = "", y = "")
+```
+
+## (b) Whether an $80\%$ confidence interval for the population mean would be wider than, narrower than or the same as the answer to part (1).
+
+Conclusion: The interval will be narrower, because the critical values will be smaller in absolute value.
+
+## (c) Test the null hypothesis $H_0:\mu=3.785$ against the $H_1:\mu\neq 3.785$ at $1\%$ significance level.
+
+## (c) Test the null hypothesis $H_0:\mu=3.785$ against the $H_1:\mu\neq 3.785$ at $1\%$ significance level.
+In (a), $\mu=3.785$ lies inside the $95\%$ confidence interval $[3.7843,3.8314]$, so the null hypothesis is already not rejected at $5\%$.
+
+## (c) Test the null hypothesis $H_0:\mu=3.785$ against the $H_1:\mu\neq 3.785$ at $1\%$ significance level.
+In (1), $\mu=3.785$ lies inside the $95\%$ confidence interval $[3.7843,3.8314]$, so the null hypothesis is already not rejected at $5\%$.
+
+\vspace{3mm}
+
+The $99\%$ confidence interval contains the $95\%$ confidence interval (when being contructed from the same sample), so $\mu=3.785$ also lies inside this interval. Hence, the null hypothesis is not rejected at $1\%$.
+
+
+# Exercise 2
+## Picture the Scenario
+\begin{itemize}
+    \item \textbf{Objective}: You have accepted a job in Taiwan and want to optimize your commuting costs and rental costs. You are in the process of buying an apartment. You have been informed that a house in Taiwan is considered overpriced if it is sold at a price higher than 3,500 USD/$m^2$. You wonder if the population mean price of the houses sold in 2012-2013 was considered overpriced.
+    \vspace{3mm}
+    \item \textbf{Dataset}: \texttt{TaiwanRealEstate.csv}
+\end{itemize}
+
+## Questions
+\begin{itemize}
+    \item[(a)] Use a classical hypothesis test to determine if there is enough evidence to conclude that the population mean price of the houses sold in 2012-2013 was considered overpriced. Use a probability of Type I error equal to 0.05.
+    \vspace{3mm}
+    \item[(b)] Prepare a power curve for the test (\emph{Hint}: Find the population mean values for $\beta=0.50$, $\beta=0.25$, $\beta=0.10$ and $\beta=0.05$, and plot those means versus the power of the test).
+\end{itemize}
+
+
+## Solution
+```{r eval = TRUE, message = FALSE, results = 'hide'}
+# Load Dataset
+Taiwan <- read.csv('TaiwanRealEstate.csv')
+str(Taiwan)
+# Price of houses in the sample
+price <- Taiwan$House.price..usd.m.2.
+# Check if there is any "Not Available" data point
+anyNA(price)
+# is.na(price)
+# sum(is.na(price))
+# Omit the "Not Available" elements
+x <- na.omit(price)
+```
+
+## (a) Hypothesis test using $\alpha = 0.05$
+Procedure includes 4 steps:
+\vspace{1.5mm}
+\begin{itemize}
+    \item Null hypothesis $H_0$
+    \vspace{1.5mm}
+    \item Alternative hypothesis $H_1$
+    \vspace{1.5mm}
+    \item Decision rule
+    \vspace{1.5mm}
+    \item Conclusion
+\end{itemize}
+
+
+## (a) Hypothesis test using $\alpha = 0.05$
+\begin{itemize}
+    \item Null hypothesis $H_0$
+        \begin{itemize}
+            \item [$\square$] $H_0$: the population mean price of the houses sold in 2012-2013 was not considered overpriced\\
+                  $H_0: \mu \leq 3500$
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Alternative hypothesis $H_1$
+        \begin{itemize}
+            \item [$\square$] $H_1$: the population mean price of the houses sold in 2012-2013 was considered overpriced\\
+                  $H_1: \mu > 3500$
+        \end{itemize}
+    \vspace{1.5mm}
+    \item Decision rule
+    \vspace{1.5mm}
+    \item Conclusion
+\end{itemize}
+
+## (a) Hypothesis test using $\alpha = 0.05$
+\begin{itemize}
+    \item Null hypothesis $H_0$
+        \begin{itemize}
+            \item [$\square$] $H_0$: the population mean price of the houses sold in 2012-2013 was not considered overpriced\\
+                  $H_0: \mu \leq 3500$
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Alternative hypothesis $H_1$
+        \begin{itemize}
+            \item [$\square$] $H_1$: the population mean price of the houses sold in 2012-2013 was considered overpriced\\
+                  $H_1: \mu > 3500$
+        \end{itemize}
+    $\Longrightarrow$ This is an \textit{upper-tail test} since the alternative hypothesis is focused on the upper tail above the mean of 3500
+    \vspace{1.5mm}
+    \item Decision rule
+    \vspace{1.5mm}
+    \item Conclusion
+\end{itemize}
+
+## Decision Rule
+
+Assume the population is normal, and the population variance is unknown:
+$$
+\frac{\bar{X} - \mu_0}{s\sqrt{n}} \sim t_{n-1}
+$$
+```{r, echo=FALSE, out.width="80%", fig.cap="Level of Significance and the Rejection Region: one-sided vs two-sided alternatives"}
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GLASGOW/GTA/ECON1013/Labs/Lab 3/Decision Rule.png")
+```
+
+
+## Decision Rule
+For upper-tail test, reject $H_0$ if:
+$$
+t = \frac{\bar{x}-\mu_0}{s\sqrt{n}} > t_{n-1,\alpha}
+$$
+
+$$
+\Leftrightarrow \bar{x} > \bar{x}_c = \mu_0 + t_{n-1,\alpha}\times\frac{s}{\sqrt{n}}
+$$
+
+## Decision Rule
+```{r eval=TRUE,message=FALSE}
+# Compute the level of significance
+alpha <- 0.05
+# Compute the sample size
+n <- length(x)
+# Compute the critical value t_c 
+t_c <- qt(alpha, n-1, lower.tail = FALSE)
+# Compute the critical value \bar{x}_c 
+x_c <- 3500 + t_c*sd(x)/sqrt(n)
+x_c
+# Compute the sample mean \bar{x} 
+mean(x)
+# Test manually
+mean(x) > x_c
+```
+
+
+## Decision Rule
+```{r eval=TRUE,message=FALSE}
+# Alternative: Use the command in R
+t.test(x, mu = 3500, conf.level = 0.95, alternative = "greater")
+```
+
+
+## (a) Hypothesis test using $\alpha = 0.05$
+\begin{itemize}
+    \item Null hypothesis: 
+    \begin{itemize}
+        \item [$\square$] $H_0$: $\mu \leq 3500$
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Alternative hypothesis: 
+    \begin{itemize}
+        \item [$\square$] $H_1$: $\mu > 3500$
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Decision rule: 
+    \begin{itemize}
+        \item [$\square$] Since $\bar{x} = 3740.474 > 3608.572 = \bar{x}_c$, we reject $H_0$ at $\alpha = 0.05$.
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Conclusion:
+    \begin{itemize}
+        \item [$\square$] There is sufficient evidence to conclude that the population mean price of the houses sold in 2012-2013 was considered overpriced.
+    \end{itemize}
+\end{itemize}
+
+## (b) Prepare a power curve for the test
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GLASGOW/GTA/ECON1013/Labs/Lab 3/Power of the Test.png")
+```
+
+\begin{itemize}
+    \item $1-\beta$ is defined as \textcolor{red}{the power of the test}, the probability that a false null hypothesis is rejected.
+    \item The value of $\beta$ and the power will be different for each value of true mean $\mu^*$.
+\end{itemize}
+
+## (b) Prepare a power curve for the test
+
+Suppose we do not reject $H_0: \mu \leq 3500$ when in fact, the true mean $\mu = \mu^* > 3500$:
+
+```{r, echo = FALSE, out.width = '80%', fig.align = 'center'}
+library(ggplot2)
+ggplot(data.frame(x = 3300:3900), aes(x)) + 
+  stat_function(fun = dnorm, args = c(3500,sd(x)/sqrt(n)), geom = 'area', 
+                xlim = c(x_c,3900), fill = 7) +
+  stat_function(fun = dnorm, args = c(3500,sd(x)/sqrt(n)), col = 2) +
+  stat_function(fun = dnorm, args = c(3680,sd(x)/sqrt(n)), geom = 'area', 
+                xlim = c(3300,x_c), fill = 3) +
+  stat_function(fun = dnorm, args = c(3680,sd(x)/sqrt(n)), col = 4) +
+  geom_vline(xintercept = 3500, color = 2, linetype = 'dashed', size = 0.3) +
+  geom_vline(xintercept = 3680, color = 4, linetype = 'dashed', size = 0.3) +
+  geom_vline(xintercept = x_c, color = 7, linetype = 'dashed', size = 1) +
+  labs(x = "", y = "") +
+  theme(axis.ticks.x = element_blank(),
+        axis.text.x = element_blank())
+```
+
+## (b) Prepare a power curve for the test
+$$
+\beta = P(\textcolor{green}{\text{ Do not reject } H_0} | \textcolor{blue}{H_0 \text{ is false}})
+$$
+$$
+\Leftrightarrow \beta = P(\bar{X} \leq \bar{x}_c | \mu = \mu^*)
+$$
+$$
+\Leftrightarrow \beta = P\left(\frac{\bar{X}-\mu^*}{s/\sqrt{n}} \leq \frac{\bar{x}_c-\mu^*}{s/\sqrt{n}} \mid \mu = \mu^*\right)
+$$
+$$
+\Leftrightarrow \beta = P\left(t \leq \frac{\bar{x}_c-\mu^*}{s/\sqrt{n}}\right) \text{ where } t = \frac{\bar{X}-\mu^*}{s/\sqrt{n}} \sim t_{n-1}
+$$
+$$
+\Leftrightarrow 1-\beta = P\left(t > \frac{\bar{x}_c-\mu^*}{s/\sqrt{n}}\right) 
+$$
+
+$$
+\Leftrightarrow  \frac{\bar{x}_c-\mu^*}{s/\sqrt{n}} = t_{n-1,1-\beta}
+$$
+$$
+\Leftrightarrow  \mu^* = \bar{x}_c - t_{n-1,1-\beta}\times \frac{s}{\sqrt{n}}
+$$
+
+## (b) Prepare a power curve for the test
+```{r, out.width = '70%', fig.align = 'center'}
+# Assign values for probability of Type II error
+beta = c(.5,.25,.1,.05)
+# Compute corresponding power of the test
+power = 1 - beta
+# Compute true value of population mean
+mu_star = x_c - qt(power, df = n-1, lower.tail = FALSE)*sd(x)/sqrt(n)
+# Power curve
+plot(mu_star, power, col = 'red')
+```
+

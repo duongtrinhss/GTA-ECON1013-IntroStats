@@ -1,0 +1,410 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "Feb 2022"
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  slidy_presentation: default
+  ioslides_presentation: default
+subtitle: 'ECON1013: LAB 2'
+fontsize: 10pt
+institute: University of Glasgow
+---
+
+## Picture the Scenario
+
+```{=tex}
+\begin{itemize}
+    \item \textbf{Objective:} 
+    \begin{itemize}
+        \item[$\square$] illustrate how the statistic $\bar{X}_n$ varies with repeated samples
+        \item[$\square$]  describe what might happen if we repeat the entire sampling process  and  compute the sample average again and again.
+        \item[$\square$] illustrate the CLT and the LLN
+    \end{itemize}
+    \vspace{3mm}
+    \item \textbf{Implementation:} 
+    \begin{itemize}
+        \item[$\square$] We use a \textit{pseudo-random number generator}, already built in R, to simulate the samples. Simulations allow the user to perform experiments and answer questions in a rapid manner.
+    \end{itemize}
+\end{itemize}
+```
+# PRELIMINARIES
+
+## The normal distribution
+
+For each distribution, R provides functions that allow users calculate value of: quantile, probability and generate random variable of the distribution.
+
+```{=tex}
+\begin{itemize}
+    \item To calculate the \textit{probability} of $P(X \leq 0.05)$ where $X \sim N(0,1)$: 
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE,results=FALSE}
+pnorm(q = 0.05, mean = 0, sd = 1) 
+```
+
+```{=tex}
+\begin{itemize}
+    \item To calculate the \textit{probability} of $P(X \leq 1)$ where $X \sim N(4,3^2)$:
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE,results=FALSE}
+pnorm(q = 1, mean = 4, sd = 3) 
+```
+
+## The normal distribution
+
+For each distribution, R provides functions that allow users calculate value of: quantile, probability and generate random variable of the distribution.
+
+```{=tex}
+\begin{itemize}
+    \item To calculate the \textit{quantile} at $p = 0.05$ of $N(0,1)$:
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE,results=FALSE}
+qnorm(p = 0.05,mean = 0,sd = 1) 
+```
+
+```{=tex}
+\begin{itemize}
+    \item To calculate the \textit{quantile} at $p = 0.05$ of $N(4,3^2)$:
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE,results=FALSE}
+qnorm(p = 0.05,mean = 4,sd = 3) 
+```
+
+## The normal distribution
+
+For each distribution, R provides functions that allow users calculate value of: quantile, probability and generate random variable of the distribution.
+
+```{=tex}
+\begin{itemize}
+    \item To calculate value of \textit{density function} of $N(0,1)$ at $0.4$:
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE,results=FALSE}
+dnorm(x = 0.4, mean = 0, sd = 1) 
+```
+
+```{=tex}
+\begin{itemize}
+    \item To calculate value of \textit{density function} of $N(4,3^2)$ at $0.4$:
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE,results=FALSE}
+dnorm(x = 0.4, mean = 4, sd = 3)    
+```
+
+## The normal distribution
+
+For each distribution, R provides functions that allow users calculate value of: quantile, probability and generate random variable of the distribution.
+
+```{=tex}
+\begin{itemize}
+    \item To generate randomly $1000$ numbers from $N(0,1)$:
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE,results=FALSE}
+R <- rnorm(n = 1000, mean = 0, sd = 1)
+head(R)
+length(R)
+summary(R)
+```
+
+## Loops (\texttt{for}) and conditional expressions (\texttt{if})
+
+```{=tex}
+\begin{itemize} 
+    \item Create the vector GENDER where the entries are either \texttt{male} or \texttt{female}
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE}
+GENDER = c('male', 'male', 'female', 'male', 'female')
+```
+
+```{=tex}
+\begin{itemize} 
+    \item Define the random variable $X$ taking value 1 if the individual is a male, and 0 if a female.
+\end{itemize}
+```
+```{r eval=TRUE,message=FALSE,results=FALSE}
+X=numeric(0)
+for (i in 1:length(GENDER)) {
+  if (GENDER[i] == 'male') {
+    X[i] = 1
+  } else {
+    X[i]=0
+  }
+}
+```
+
+# Exercise 1: The Central Limit Theorem
+
+## Exercise 1: The Central Limit Theorem
+
+```{=tex}
+\begin{itemize}
+  \item Simulate 10,000 samples of size $n$ from an exponential distribution with mean $\mu=10$. Consider different sample sizes, e.g. $n = 10, 30, 500$. 
+  \item For each sample, compute the standardized sample average: $$
+  \tilde{X}=\frac{\bar{X}-\mathbb{E}(\bar{X})}{\sigma_{\bar{x}}}
+$$
+
+  \item Compute the empirical quantiles  of the sample distribution of $\tilde{X}$. Compare the results with the theoretical quantiles of the standard normal random variable $Z$.
+  \item Compute quantile $z$ satisfying $P(Z<z)=0.975$. Calculate the percentage of values of $\tilde{X}$ greater than $z$.
+\end{itemize}
+```
+Comment on your results.
+
+## Exercise 1: The Central Limit Theorem
+
+Specify the parameters of the experiment
+
+```{r}
+# "n" is the sample size. Try n = 10, 30, 500
+n = 10
+# "R" is the number of replications
+R = 10000
+# Parameter exponential
+mu = 10 # mean
+```
+
+To reproduce results, setting a seed in R means to initialize a pseudorandom number generator
+
+```{r}
+set.seed(12) # take an (arbitrary) integer 
+```
+
+## Exercise 1: The Central Limit Theorem
+
+Simulate $R$ samples of size $n$ from an exponential distribution with mean $\mu = 10$ and compute the standardized sample average for each sample:
+
+$$
+Y=\frac{\bar{X}-\mathbb{E}(\bar{X})}{\sigma_{\bar{x}}}
+$$
+
+```{r}
+# Create vector Y (pre-allocation) 
+Y = numeric(0) 
+# Loop through R replications
+for (i in 1:R) {
+  X = rexp(n,1/mu) # The sample will change for every "i"
+  # Compute standardized sample average
+  Y[i] = (mean(X)-mu)/(mu/sqrt(n))
+}
+```
+
+## Exercise 1: The Central Limit Theorem
+
+To assess the how well the sampling distribution of X is approximated by the standard normal we compare the quantile of of X and the quantile for a standard normal distribution.
+
+## Exercise 1: The Central Limit Theorem
+
+```{r}
+# Empirical quantiles
+quantile(Y)
+```
+
+```{r}
+# Population quantiles of a standard normal distribution
+qnorm(p = 0.25, mean = 0, sd = 1)
+qnorm(p = 0.5, mean = 0, sd = 1)
+qnorm(p = 0.75, mean = 0, sd = 1)
+
+```
+
+## Exercise 1: The Central Limit Theorem
+
+```{r}
+hist(Y, prob = T)
+```
+
+## Exercise 1: The Central Limit Theorem
+
+```{r}
+qqnorm(Y,main='Normal(0,1)');qqline(Y) #normal plots
+```
+
+## Exercise 1: The Central Limit Theorem
+
+```{r}
+# Compute the quantile z satisfying P(Z<z) = 0.975
+z = qnorm(p = 0.975, mean = 0, sd = 1)
+z
+# The percentage of values of Y greater than z
+sum(Y>z)/R*100 
+```
+
+If the sample is well approximated by a standard normal distribution, the realization of $Y$ should be greater than $z$ : $(1-0.975*R) = 250$ times, or $2.5\%$ of the times.
+
+## Exercise 1: The Central Limit Theorem
+
+```{r eval=TRUE,message=FALSE,warning=FALSE,echo=FALSE}
+library(ggplot2)
+library(gridExtra)
+set.seed(12)
+# "R" is the number of replications
+R = 10000
+# "n" is the sample size. Try n=10,30,500
+for (n in c(10,30,500)) {
+
+  # Create the vector Y (pre-allocation) to store the R standardized sample averages
+Y = numeric(0) 
+for (i in 1:R) {
+  mu = 10
+  X = rexp(n,1/mu) # The sample will change for every "i"
+  # Compute standardized sample average
+  Y[i] = (mean(X)-mu)/(mu/sqrt(n))
+}
+
+Y <- data.frame(Y)
+
+if (n == 10) {
+h1 <- ggplot(Y,aes(Y))+
+  geom_histogram(color = "blue",fill="white")+
+  geom_vline(aes(xintercept = mean(Y)), color = "red")+
+  ggtitle("N = 10")
+
+qq1 <- ggplot(Y, aes(sample = Y))+
+  stat_qq(color = 'blue') + stat_qq_line(color = 'red')+
+  labs(x = "Theoretical Quantiles", y = "Sample Quantiles")+
+  ggtitle("N = 10")
+}
+else if (n == 30) {
+  h2 <- ggplot(Y,aes(Y))+
+    geom_histogram(color = "blue",fill="white")+
+    geom_vline(aes(xintercept = mean(Y)), color = "red")+
+    ggtitle("N = 30")
+  
+  qq2 <- ggplot(Y, aes(sample = Y))+
+    stat_qq(color = 'blue') + stat_qq_line(color = 'red')+
+    labs(x = "Theoretical Quantiles", y = "Sample Quantiles")+
+    ggtitle("N = 30")
+}
+else {
+  h3 <- ggplot(Y,aes(Y))+
+    geom_histogram(color = "blue",fill="white")+
+    geom_vline(aes(xintercept = mean(Y)), color = "red")+
+    ggtitle("N = 500")
+  
+  qq3 <- ggplot(Y, aes(sample = Y))+
+    stat_qq(color = 'blue') + stat_qq_line(color = 'red')+
+    labs(x = "Theoretical Quantiles", y = "Sample Quantiles")+
+    ggtitle("N = 500")
+}
+}
+grid.arrange(h1,h2,h3,qq1,qq2,qq3,ncol=3,nrow=2)
+```
+
+## The Central Limit Theorem - Reflection
+
+\textcolor{blue}{The distribution of the sample average $\bar{X_n}$ will be approximately normal as long as the sample size $n$ is large enough.}\
+
+# Exercise 2: The Law of Large Numbers
+
+## Exercise 2: The Law of Large Numbers
+
+```{=tex}
+\begin{itemize}
+  \item Compute the sample averages 
+  $$
+  \bar{x}_n = \frac{\sum_{i=1}^n x_i}{n}
+  $$
+for $n$ draws from the exponential distribution considered in Exercise 1, for $n=1,2,\dots,1000$.  
+  \item Plot the sample averages. What do you conclude about the variability of the sample average?
+\end{itemize}
+```
+## Exercise 2: The Law of Large Numbers
+
+```{r eval=TRUE,message=FALSE,fig.show='hide'}
+set.seed(12) # to reproduce results
+N = 1000 # maximum sample size
+mu = 10 # parameter exponential 
+Y = numeric(0) # pre-allocation 
+for (i in 1:N) {
+  X = rexp(i,1/mu) # 'i' draws from Exp(1/mu)
+  Y[i] = mean(X) # sample average
+}
+plot(Y, xlab = "Sample size n", ylab = "Sample average Y")
+lines(rep(mu,N), col = 'red')
+```
+
+## Exercise 2: The Law of Large Numbers
+
+```{r eval=TRUE,message=FALSE,echo=FALSE}
+set.seed(12) # to reproduce results
+N = 1000 # maximum sample size
+mu = 10 # parameter exponential 
+Y = numeric(0) # pre-allocation 
+for (i in 1:N) {
+  X = rexp(i,1/mu)
+  Y[i] = mean(X)
+}
+plot(Y, xlab = "Sample size n", ylab = "Sample average Y")
+lines(rep(mu,N), col = 'red')
+```
+
+## Exercise 2: The Law of Large Numbers
+
+```{r eval=TRUE,message=FALSE,warning=FALSE,echo=FALSE}
+library(ggplot2)
+set.seed(12)
+mu = 10
+
+N = 100
+Y1 = numeric(0)
+  for (i in 1:N) {
+    X = rexp(i,1/mu)
+    Y1[i] = mean(X)
+  }
+n1 = 1:N
+Yn1 <- data.frame(Y1,n1)
+
+p1 <- ggplot(Yn1,aes(n1,Y1))+
+  geom_point(shape = 2, color = 4, size = 1)+
+  geom_hline(yintercept = mu, color = 'red')+
+  labs(x = "Sample size n", y = "Sample average Y")+
+  ggtitle("N = 100")+
+  coord_cartesian(ylim = c(0, 26))
+
+N = 1000
+Y2 = numeric(0)
+for (i in 1:N) {
+  X = rexp(i,1/mu)
+  Y2[i] = mean(X)
+}
+n2 = 1:N
+Yn2 <- data.frame(Y2,n2)
+
+p2 <- ggplot(Yn2, aes(n2,Y2))+
+  geom_point(shape = 2, color = 4, size = 1)+
+  geom_hline(yintercept = mu, color = 'red')+
+  labs(x = "Sample size n", y = "Sample average Y")+
+  ggtitle("N = 1000")+
+  coord_cartesian(ylim = c(0, 26))
+
+N = 10000
+Y3 = numeric(0)
+for (i in 1:N) {
+  X = rexp(i,1/mu)
+  Y3[i] = mean(X)
+}
+n3 = 1:N
+Yn3 <- data.frame(Y3,n3)
+
+p3 <- ggplot(Yn3,aes(n3,Y3))+
+  geom_point(shape = 2, color = 4, size = 1)+
+  geom_hline(yintercept = mu, color = 'red')+
+  labs(x = "Sample size n", y = "Sample average Y")+
+  ggtitle("N = 10000")+
+  coord_cartesian(ylim = c(0, 26))
+
+library(gridExtra)
+grid.arrange(p1,p2,p3,ncol=3,nrow=1)
+```
+
+## The Law of Large Numbers - Reflection
+
+\textcolor{blue}{Given a random sample of size $n$ from a population, the sample average $\bar{X_n}$ will approach the population mean $\mu$ as the sample size $n$ becomes large.}
