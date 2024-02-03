@@ -1,0 +1,434 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "Jan 2024"
+institute: University of Glasgow
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  slidy_presentation: default
+  ioslides_presentation: default
+  pdf_document: default
+subtitle: 'ECON1013: LAB 1'
+fontsize: 10pt
+geometry: left = 1cm, right = 0.5cm, top = 0.5cm, bottom = 0.5cm
+linestretch: 1.5
+# linkcolor: blue
+header-includes:
+- \titlegraphic{\includegraphics[scale=0.05]{pictures/GlaLogo.pdf}}
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{array}
+- \usepackage{longtable}
+- \useinnertheme{rectangles}
+# - \setbeamertemplate{itemize item}{\scriptsize$\bowtie$}
+# - \setbeamertemplate{itemize item}{$\diamond$}
+- \setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+# - \setbeamertemplate{itemize subsubitem}{\scriptsize$\gg$}
+- \definecolor{blue}{RGB}{0,114,178}
+- \definecolor{red}{RGB}{213,94,0}
+- \definecolor{yellow}{RGB}{240,228,66}
+- \definecolor{green}{RGB}{0,158,115}
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(knitr.table.format = function() {
+  if (knitr::is_latex_output()) 'latex' else 'pandoc'
+})
+```
+
+## Intro
+
++ Duong Trinh
+  + PhD Student in Economics (Bayesian Microeconometrics)
+  + Email: \underline{Duong.Trinh@glasgow.ac.uk}
+
+\vspace{3mm}
+
+<!-- + ECON1013-LB04 -->
+<!--   + Monday 1-2 pm -->
+<!--   + 3 sessions (29-Jan, 12-Feb, 26-Feb) -->
+  
+<!-- + ECON1013-LB05 -->
+<!--   + Tuesday 12-1 pm -->
+<!--   + 3 sessions (30-Jan, 13-Feb, 27-Feb) -->
+
++ ECON1013-LB06
+  + Tuesday 1-2 pm
+  + 3 sessions (30-Jan, 13-Feb, 27-Feb)
+  
+\vspace{3mm}
+
+## Record Attendance
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/QRcodeAtd_LB04.png")
+```
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/QRcodeAtd_LB05.png")
+```
+
+```{r, echo=FALSE, eval=TRUE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/QRcodeAtd_LB06.png")
+```
+
+## Setup
+
++ Step 1: Download Lab materials from **Moodle** page $\rightarrow$ Extract the folder in PC.
+
++ Step 2: Log in **Microsoft onedrive** using your student account \textcolor{blue}{https://onedrive.live.com/login/} and upload the folder above.
+  
++ Step 3: Launch the **Excel** online  \textcolor{blue}{https://www.office.com/launch/excel?auth=2}, which we will use for all lab sessions.
+
+# PRELIMINARIES
+
+## The Excel Interface
+### Ribbon
+
+### Workbook and Worksheets
+
+### Rows, Columns, and Cells
+
+## The Excel Interface
+### Ribbon
+```{r, echo=FALSE, out.width='50%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Excel-ribbon.png")
+```
+
++ To show or hide the ribbon commands, press **Ctrl-F1**.
+
++ If you can’t remember the location of a command, you can always use the search bar on the ribbon to find it.
+
+## The Excel Interface
+### Workbook and Worksheets
+
+```{r, echo=FALSE, out.width='50%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Excel-worksheets.png")
+```
+
+> A workbook is an Excel file that contains one or more worksheets. Worksheets are where you organize and process your data.
+
++ To navigate through your worksheets using keyboard shortcuts:
+
+  + Press **Ctrl + Page Up** to move to the next sheet.
+  
+  + Press **Ctrl + Page Down** to move to the previous sheet.
+
+## The Excel Interface
+### Rows, Columns, and Cells
+```{r, echo=FALSE, out.width='50%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Excel-cells.png")
+```
+
++ To navigate within a worksheet, use the arrow keys to move up, down, left, or right.
+
++ To select a range of cells, click and drag with your mouse or hold the Shift key while using the arrow keys.
+
++ To quickly select the entire row or column, click on the row number or column letter.
+
+## Excel Formulas and Functions
+### Excel Formulas
+### Cell Referencing
+### Excel Math Functions
+
+## Excel Formulas and Functions
+### Excel Formulas
+
+\vspace{3mm}
+
+> Formulas in Excel are used to perform calculations and manipulate data with built-in functions.
+
++ To create a formula, start with an equal sign ($\textbf{=}$) followed by a combination of numbers, cell references, and mathematical operators.
+
++ Here is an example that adds the values in the range `A1` to `A5`: $\textbf{\texttt{=SUM(A1:A5)}}$.
+
+## Excel Formulas and Functions
+### Cell Referencing
+
+> Cell referencing is a way to point to a specific cell or range of cells in a formula. There are two types of cell references: absolute and relative.
+
++ \textcolor{green}{\textbf{Absolute}}: refers to a specific cell or range and keeps the same reference even when the formula is copied. It uses a dollar sign ($\texttt{\$}$) to denote absolute referencing, like $\texttt{\$A\$1}$.
+
++ \textcolor{green}{\textbf{Relative}}: A relative reference changes when the formula is copied to another cell or range, adjusting the reference based on the new location.
+
+## Excel Formulas and Functions
+### Excel Math Functions
+
+Here are some commonly used Math functions for computation in Excel:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(xtable)
+library(kableExtra)
+table <- tibble(
+  shortcut = c("SUM()",
+               "AVERAGE()",
+               "MIN()",
+               "MAX()",
+               "COUNT()",
+               "PRODUCT()"
+               ),
+  description = c("Adds up a range of numbers",
+    "Calculates the arithmetic mean of a range of numbers",
+    "Returns the smallest value in a dataset",
+    "Returns the largest value in a dataset",
+    "Counts the number of cells containing numbers within a range",
+    "Multiplies a range of numbers together")
+) %>% `names<-`(c("Function","Description"))
+
+table %>% 
+  kbl(align = "l", booktabs = T, linesep = "") %>%
+  kable_styling(full_width = F) %>% 
+  column_spec(1, italic = F, bold = F, color = "red")
+  # kable_classic("striped", full_width = F)
+
+```
+
+## Excel General Shortcuts
+
+Here are some commonly used shortcuts for routine tasks and Excel commands:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(xtable)
+library(kableExtra)
+table <- tibble(
+  shortcut = c("Ctrl + N",
+               "Ctrl + O",
+               "Ctrl + S",
+               "Ctrl + Z",
+               "Ctrl + Y",
+               "Ctrl + C",
+               "Ctrl + X",
+               "Ctrl + V"
+               ),
+  description = c("Create a new workbook",
+    "Open an existing workbook",
+    "Save the current workbook",
+  "Undo the last action",
+  "Redo the last action",
+  "Copy the selected cells",
+  "Cut the selected cells",
+  "Paste the copied or cut cells"),
+) %>% `names<-`(c("Shortcut","Task"))
+
+table %>% 
+  kbl(align = "l", booktabs = T, linesep = "") %>%
+  kable_styling(full_width = F) %>% 
+  column_spec(1, italic = F, bold = T, color = "black")
+  # kable_classic("striped", full_width = F)
+
+```
+
++ Shortcut to select data range: **`Ctrl`** + **`Shift`** + $\Downarrow$ $\Uparrow$ $\Leftarrow$ $\Rightarrow$
+
+## Excel Charts And Graphs
+
+ Excel offers a handy variety of charts and graphs to choose from, including:
+
++ \textcolor{green}{\textbf{Column charts}}: Compare different data sets across distinct categories.
+
++ \textcolor{green}{\textbf{Bar charts}}: Display comparisons among discrete categories horizontally.
+
++ \textcolor{green}{\textbf{Pie charts}}: Illustrate proportional data and percentages.
+
++ \textcolor{green}{\textbf{Line charts}}: Show trends and patterns over time (aka *time-series plots*).
+
+## Excel Charts And Graphs
+
+To create a chart in Excel:
+
+1. Select your data range.
+2. Click on the `‘Insert’` tab in the Excel toolbar and choose desired chart type.
+3. Customize your chart’s design, layout, and formatting to meet your requirements.
+
+## Excel Charts And Graphs
+
+To create a chart in Excel:
+
+1. Select your data range.
+
+```{r, echo=FALSE, out.width='60%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Chart-SelectRange.png")
+```
+
+## Excel Charts And Graphs
+
+To create a chart in Excel:
+
+2. Click on the `‘Insert’` tab in the Excel toolbar and choose desired chart type.
+
+```{r, echo=FALSE, out.width='45%', out.height="30%", fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics(c("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Chart-Insert1.png","/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Chart-Insert2.png"))
+```
+
+## Excel Charts And Graphs
+
+To create a chart in Excel:
+
+3. Customize your chart’s design, layout, and formatting to meet your requirements.
+
+```{r, echo=FALSE, out.width='60%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Chart-Result.png")
+```
+
+# Exercise 1. Data on a single variable.
+
++ Data set: \texttt{ages.xlsx}
+
++ The (imaginary) ages of survey respondents, $n = 30$.
+
+## Part 1. Summary statistics.
+1. Create a new tab on the spreadsheet.
+
+2. Compute the mean, median, min, max of ages using Excel functions. Make a table.
+
+3. Compute the mean age using only the following excel commands: \textcolor{red}{SUM()}, \textcolor{red}{COUNT()}.
+
+4. Which one is higher, the mean or the median? What does this tell us about the shape of the distribution of the data?
+
+## Part 2. Plotting data.
+1. Create a new tab on the spreadsheet with the data from the original tab.
+
+2. Compute a frequency distribution table. Decide yourself the cutoff points.
+
+3. Compute a corresponding cumulative distribution table.
+
+4. Make a graph describing the frequency distribution. The title should be *"Frequency distribution (histogram)"*.
+
+5. Make a graph describing the cumulative frequency distribution. The title should be *"Cumulative Frequency distribution (ogive)"*.
+
+## Part 2. Plotting data.
++ Two bar charts describe *frequency distribution* and *cumulative frequency distribution*.
+
+```{r, echo=FALSE, out.width='45%', out.height="30%", fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics(c("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Ex1-pmf-Histogram.png","/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Ex1-cdf-Ogive.png"))
+```
+
+## Part 3. Plotting data: Pie charts.
+- A pie chart summarizes the age distribution. 
+```{r, echo=FALSE, out.width='60%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Ex1-PieChart.png")
+```
++ It emphasises the proportions of frequencies in each age group.
+
+# Exercise 2. Data on multiple variables.
+
++ Data set: \texttt{incomes.xlsx}
++ About (imaginary) data on two variables  
+  + income (`inc`), and 
+  + years of schooling (`educ`), which is categorical and coded as follows:
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(xtable)
+library(kableExtra)
+code <- c(9,10,11,12,13,"...",17,18)
+year <- c("Grade 9", "Grade 10", "Grade 11", "Grade 12", "1 year of college", "","5 years of college", "6+ years of college")
+
+table <- tibble(code,year) %>% `names<-`(c("",""))
+
+table %>% 
+  kbl(align = "l", booktabs = T, linesep = "") %>%
+  kable_styling(full_width = F)
+```
+
+## Part 1. Correlation
+- Open up the data and create a new tab with the original data.
+- Compute the sample mean and the sample variance of both variables.
+- Compute the coefficient of correlation between income and years of schooling. How do we interpret the correlation coefficient? Is it a large or a small coefficient?
+
+## Part 1. Correlation
+- Coefficient of Correlation summarises the *direction* and *strength* of the linear relationship between two quantitative variables.
+- Sample correlation coefficient
+$$
+r = \frac{s_{xy}}{s_x s_y}
+$$
+
+- **Magnitude of correlation**  
+Often, when we discuss correlations, we use the following rules of thumb:  
+  + $\mid r \mid < 0.2$: small correlation
+  + $0.2 \leq \mid r \mid \leq 0.8$: medium correlation
+  + $\mid r \mid > 0.8$: very strong correlation
+
+```{r, echo=FALSE, eval=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(xtable)
+library(kableExtra)
+a <- c("|Correlation| < 0.2", "0.2 <= |Correlation| <= 0.8", "|Correlation| >0.8")
+b <- c("small correlation","medium correlation","very strong correlation")
+table <- tibble(a,b) %>% `names<-`(c("",""))
+
+table %>% 
+  kbl(align = "l", booktabs = T, linesep = "") %>%
+  kable_styling(full_width = F)
+```
+
+## Part 2. Scatterplots
+- Create a new tab with the original data.
+- Make a scatterplot of the data. This is a plot where each individual (each row in the data) is described as a dot, and the x-axis value shows the years of education, the y-axis value shows the income of the individual.
+- How does the scatterplot reflect the correlation coefficient from Part 1?
+
+## Part 2. Scatterplots
+- A scatterplot of the data where each individual (each row in the data) is described as a dot, and the x-axis value shows the years of education, the y-axis value shows the income of the individual.
+```{r, echo=FALSE, out.width='60%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Ex2-ScatterPlot.png")
+```
+
+
+## Part 3. Binned plots
+- The scatterplot can be hard to read when there are many observations. Different data visualization tools can make the data easier to interpret.
+- Create a new tab with the original data.
+- For each value of “educ”, compute the conditional average of income. That means that for each level of education you calculate the average income  
+(Hint: Use Excel formulas \textcolor{red}{UNIQUE()} and \textcolor{red}{AVERAGEIF()}).
+- Make a binned plot where x-axis is the years of education and y-axis is the average income for the given level of education.  
+(Hint: There will be only one dot in the picture for each years of schooling).
+- When can a binned plot be more informative than a scatterplot?
+
+## Part 3. Binned plots
+- A binned plot where x-axis is the years of education and y-axis is the average income for the given level of education.  
+```{r, echo=FALSE, out.width='60%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/Ex2-BinnedPlot.png")
+```
+
+- There will be only one dot in the picture for each years of schooling.
+
+## Part 3. Binned plots
+- A binned plot is often used when we want to describe the association (correlation) between two variables, but there are too many observations to make an informative scatterplot. 
+
+
+## Part 4 [opt]. Percentiles and IF-statements on Excel
+- Compute the $50^{\text{th}}$ percentile of the data (the median) conditional on years of education.  
+(Hint: you should calculate the $50^{\text{th}}$ percentile for all values of years of education; use formula \textcolor{red}{MEDIAN(IF())})
+- Compute the $25^{\text{th}}$ and the $75^{\text{th}}$ percentiles of the data conditional on years of education.  
+(Hint: use formula \textcolor{red}{PERCENTILE(IF())})
+- How do we interpret the table?
+
+## REFERENCES
+
+1. Excel Cheetsheet:  
+https://blog.enterprisedna.co/excel-cheat-sheet/
+
+2. Create charts in Excel:  
+https://www.excel-easy.com/data-analysis/charts.html#google_vignette
