@@ -1,0 +1,145 @@
+\documentclass[11pt,a4paper]{article}
+%\documentclass[professionalfonts, 10pt]{beamer}
+%\usetheme{default}
+%\usetheme{Pittsburgh}
+\usepackage{accessibility}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[pdflang={en-GB}]{hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+%
+%
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{kerkis}
+\usepackage{stmaryrd}
+%\usepackage{bm}
+%\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathrsfs,dsfont}
+%\usepackage{latexsym}
+%\usefonttheme{professionalfonts}
+%\usetheme{Copenhagen}
+%\usecolortheme{beaver}
+\usepackage[english]{babel}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{textcomp}
+%\usepackage{pifont}
+%\usepackage{bbding}
+%\usepackage{enumerate}
+\usepackage{natbib}
+%\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+\usepackage{color}
+\usepackage{graphicx}
+%
+%
+%\usepackage{authblk}
+%\usepackage{MnSymbol}
+\usepackage{semtrans}
+\usepackage{units}
+%\usepackage{mathrsfs}
+%\usepackage{makeidx}
+%
+%
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\setcounter{MaxMatrixCols}{10}
+\newcommand{\stackunder}[2]{\mathrel{\mathop{#2}\limits_{#1}}}
+\newcommand{\fd}[1]{\Delta^{#1}_+}
+%
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\var}{\mathbb{V}ar}
+\DeclareMathOperator{\cov}{\mathbb{C}ov}
+\DeclareMathOperator{\corr}{\mathbb{C}orr}
+%
+\def\vec{\mathop{\textmd{vec}}\nolimits}
+\def\eig{\mathop{\textmd{eig}}\nolimits}
+\def\tr{\mathop{\textmd{tr}}\nolimits}
+\def\diag{\mathop{\textmd{diag}}\nolimits}
+\def\vec{\mathop{\textmd{vec}}\nolimits}
+\def\vh{\mathop{\textmd{vech}}\nolimits}
+\def\berr{\begin{eqnarray*}}
+\def\eerr{\end{eqnarray*}}
+\def\ber{\begin{eqnarray}}
+\def\eer{\end{eqnarray}}
+\def\d{\textrm{d}}
+\def\corr{\mathop{\textmd{Corr}}\nolimits}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\def\ln{\textrm{ln}}
+
+\def\itemb{\item[$\bullet$]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\newcommand{\V}[1]{``{#1}"}
+
+\begin{document}
+\begin{center}
+\begin{Huge}
+Tutorial 4
+\end{Huge}
+\end{center}
+
+
+\begin{enumerate}[labelindent=0pt,labelwidth=0.75em,leftmargin=!]
+\item  As part of a \V{Math for the Twenty-First Century} initiative, Bayview High  was chosen to participate in the evaluation of a new algebra and geometry curriculum. In the  recent past, Bayview's students were considered \V{typical}, having earned scores on standardized exams that were very consistent with national averages.
+
+Two years ago, a cohort of eighty-six Bayview students, all randomly selected, were assigned to a special set of classes that integrated algebra and geometry. According to test results that have just been released, those students averaged 502 on the math exam; nationwide seniors averaged 494 with a standard deviation of 124.
+\begin{enumerate}
+\item Can it be claimed at $5\%$ significance level that the new curriculum had effect? Justify your answer.
+\item Compute the p-value associated with the test statistics. How should it be interpreted? 
+\end{enumerate}
+
+\item[]\textbf{Short Solution}
+\begin{enumerate}
+\item Given the sample size and the sampling scheme, the sample average is asymptotically normally distributed. 
+ $\frac{502-494}{124/\sqrt{n}}=0.5983$ is lower than 1.96, so we don't reject the null (even at 10\% significance level).
+\item Looking at the statistical tables
+$$
+P\left(Z\leq 0.5983\right)\simeq 0.7257
+$$
+Then the p-value is $2(1-0.7257)=0.5486$. The large p-value should be interpreted as evidence against the rejection of the null hypothesis. We would reject the null hypothesis for unusual large $\alpha>0.5486$.
+\end{enumerate}
+\item Supporters claim that a new windmill can generate
+an average of at least 800 kilowatts of power per day.
+Daily power generation for the windmill is assumed
+to be normally distributed with a standard deviation of 120 kilowatts. A simple random sample of 100 days is
+taken to test this claim against the alternative hypothesis that the true mean is less than 800 kilowatts. The
+claim will not be rejected if the sample mean is 776
+kilowatts or more and rejected otherwise. 
+\begin{enumerate}
+\item What is the probability $\alpha$ of a Type I error using
+the decision rule if the population mean is, in fact,
+800 kilowatts per day?
+\item What is the probability $\beta$ of a Type II error using
+this decision rule if the population mean is, in fact,
+740 kilowatts per day?
+\item Suppose that the same decision rule is used, but
+with a sample of 200 days rather than 100 days.
+\begin{enumerate}
+\item Would the value of $\alpha$ be larger than, smaller
+than, or the same as that found in part (a)? Explain.
+\item Would the value of $\beta$ be larger than, smaller
+than, or the same as that found in part (b)? Explain.
+\end{enumerate}
+\end{enumerate}
+%
+\item[]\textbf{Short Solution} See the solution of Exercise 9.58 Textbook (see Moodle, Unit 5).
+
+\end{enumerate}
+\end{document}

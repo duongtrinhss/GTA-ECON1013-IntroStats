@@ -1,0 +1,438 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "March 2022"
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  slidy_presentation: default
+  ioslides_presentation: default
+subtitle: 'ECON1013: TUTORIAL 4'
+fontsize: 10pt
+institute: University of Glasgow
+---
+
+## Exercise 1
+As part of a "Math for the Twenty-First Century" initiative, Bayview High  was chosen to participate in the evaluation of a new algebra and geometry curriculum. In the  recent past, Bayview's students were considered "typical", having earned scores on standardized exams that were very consistent with national averages.
+
+Two years ago, a cohort of 86 Bayview students, all randomly selected, were assigned to a special set of classes that integrated algebra and geometry. According to test results that have just been released, those students averaged 502 on the math exam, and nationwide seniors averaged 494 with a standard deviation of 124.
+\begin{enumerate}
+  \item [(a)] Can it be claimed at $5\%$ significance level that the new curriculum had effect? Justify your answer.
+  \item [(b)] Compute the p-value associated with the test statistics. How should it be interpreted? 
+\end{enumerate}
+
+## (a) Hypothesis Testing with $\alpha = 0.05$
+
+Procedure includes 4 steps:
+\vspace{1.5mm}
+\begin{itemize}
+    \item Null hypothesis $H_0$
+    \vspace{1.5mm}
+    \item Alternative hypothesis $H_1$
+    \vspace{1.5mm}
+    \item Decision rule
+    \vspace{1.5mm}
+    \item Conclusion
+\end{itemize}
+
+## (a) Hypothesis Testing with $\alpha = 0.05$
+Denote $\mu$ the true mean of math score if students paticipated in the new curriculum.   
+\begin{itemize}
+    \item Null hypothesis $H_0$
+        \begin{itemize}
+            \item [$\square$] $H_0$: The new curriculum had no effect\\
+                  $H_0: \mu = 494$
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Alternative hypothesis $H_1$
+        \begin{itemize}
+            \item [$\square$] $H_1$: The new curriculum had effect\\
+                  $H_1: \mu \neq 494$
+        \end{itemize}
+    \vspace{1.5mm}
+    \item Decision rule
+    \vspace{1.5mm}
+    \item Conclusion
+\end{itemize}
+
+## (a) Hypothesis Testing with $\alpha = 0.05$
+Denote $\mu$ the true mean of math score if students paticipated in the new curriculum.   
+\begin{itemize}
+    \item Null hypothesis $H_0$
+        \begin{itemize}
+            \item [$\square$] $H_0$: The new curriculum had no effect\\
+                  $H_0: \mu = 494$
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Alternative hypothesis $H_1$
+        \begin{itemize}
+            \item [$\square$] $H_1$: The new curriculum had effect\\
+                  $H_1: \mu \neq 494$\\
+        \end{itemize}
+        $\Longrightarrow$ This is an \textit{two-tail test}
+    \vspace{1.5mm}
+    \item Decision rule
+    \vspace{1.5mm}
+    \item Conclusion
+\end{itemize}
+
+## Decision Rule
+Given the sample size and the sampling scheme, the sample average is asymptotically normally distributed:
+$$
+\frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} \sim N(0,1)
+$$
+
+```{r, echo=FALSE, out.width="80%", fig.cap="Level of Significance and the Rejection Region: one-sided vs two-sided alternatives"}
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GLASGOW/GTA/ECON1013/Tutorials/Tutorial 4/Decision Rule.png")
+```
+
+## Decision Rule
+For two-sided test, reject $H_0$ if:
+$$
+z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} < - z_{\frac{\alpha}{2}} \text{ or } z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} > z_{\frac{\alpha}{2}}
+$$
+Notice that:
+$$
+z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} = \frac{502 - 494}{124/\sqrt{86}} \approx 0.5983 
+$$
+and $z_{\frac{\alpha}{2}} = z_{0.025} = 1.96$
+
+## (a) Hypothesis Testing with $\alpha = 0.05$
+Denote $\mu$ the true mean of math score if students paticipated in the new curriculum.   
+\begin{itemize}
+    \item Null hypothesis $H_0$
+        \begin{itemize}
+            \item [$\square$] $H_0$: The new curriculum had no effect\\
+                  $H_0: \mu = 494$
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Alternative hypothesis $H_1$
+        \begin{itemize}
+            \item [$\square$] $H_1$: The new curriculum had effect\\
+                  $H_1: \mu \neq 494$\\
+        \end{itemize}
+        $\Longrightarrow$ This is an \textit{two-sided test}
+    \vspace{1.5mm}
+    \item Decision rule
+        \begin{itemize}
+            \item [$\square$] $z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} = \frac{502 - 494}{124/\sqrt{86}} \approx 0.5983$, which is greater than -1.96 ($-z_{0.025}$) and less than 1.96 ($z_{0.025}$).\\
+        \end{itemize}
+        $\Longrightarrow$ We DO NOT reject $H_0$ at $\alpha = 0.05$.
+    \vspace{1.5mm}
+    \item Conclusion
+    \pause
+        \begin{itemize}
+            \item [$\square$] There isn't sufficient evidence to conclude that the new curriculum had effect.
+        \end{itemize}
+\end{itemize}
+
+## (b) Compute the p-value associated with the test statistics
+```{r eval=TRUE,message=FALSE, out.width="80%", fig.align = 'center', echo=FALSE}
+library(ggplot2)
+ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(0.5983,5), fill = 4, alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-0.5983), fill = 4, alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line', 
+                xlim = c(-5,5), color = "blue") +
+  geom_vline(xintercept = 0.5983, color = 4, linetype = 'dashed', size = 0.5) +
+  geom_vline(xintercept = -0.5983, color = 4, linetype = 'dashed', size = 0.5) +
+  geom_vline(xintercept = 0, color = "blue", linetype = 'dashed', size = 0.5) +
+  labs(x = "", y = "")
+```
+
+Looking at the statistical tables: $P\left(Z\leq 0.5983\right)\approx 0.7257$. Hence, 
+$$
+p-value = P(Z < -0.5983) + P(Z > 0.5983) = 2(1-0.7257) = 0.5486
+$$
+
+## (b) Compute the p-value associated with the test statistics
+The p-value is the probability of obtaining a value of the test statistic \textit{as extreme as or more extreme} than the actual value obtained when the null hypothesis is true. Thus, the p-value is the \textit{smallest} significance level at which a null hypothesis can be \textit{rejected}, given the observed sample statistic. 
+
+Here, the large p-value should be interpreted as evidence against the rejection of the null hypothesis: 
+$$
+p-value = 0.5486 \Longrightarrow \text{We do not reject } H_0 \text{ at } \alpha = 0.05
+$$
+
+
+
+## Decision rule based on p-value
+```{r eval=TRUE,message=FALSE, out.width="100%", fig.align = 'center', echo=FALSE}
+library(ggplot2)
+library(gridExtra)
+
+z_c = 1.5
+z_a = 1.96
+p1 <- ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line',
+                xlim = c(-5,5), color = "blue") +
+  geom_vline(xintercept = 0, color = "blue", linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(z_c,5), fill = 4, alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-z_c), fill = 4, alpha = 0.5) +
+  geom_vline(xintercept = z_c, color = 4, linetype = 'dashed', size = 0.5) +
+  geom_vline(xintercept = -z_c, color = 4, linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(z_a,5), fill = "orange", alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-z_a), fill = "orange", alpha = 0.5) +
+  geom_vline(xintercept = z_a, color = "orange", linetype = 'dashed', size = 0.5) +
+  geom_vline(xintercept = -z_a, color = "orange", linetype = 'dashed', size = 0.5) +
+  labs(x = "Two-sided Test with alpha = 0.05", y = "") +
+  annotate(geom="text", x=3.6, y=0.3, label="Do not reject H0",
+           color="red") +
+  annotate(geom="text", x=3.6, y=0.26, label="if p-value >= alpha",
+           color="red")
+
+z_c = 2.5
+z_a = 1.96
+p2 <- ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line',
+                xlim = c(-5,5), color = "blue") +
+  geom_vline(xintercept = 0, color = "blue", linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(z_a,5), fill = "orange", alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-z_a), fill = "orange", alpha = 0.5) +
+  geom_vline(xintercept = z_a, color = "orange", linetype = 'dashed', size = 0.5) +
+  geom_vline(xintercept = -z_a, color = "orange", linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(z_c,5), fill = 4, alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-z_c), fill = 4, alpha = 0.5) +
+  geom_vline(xintercept = z_c, color = 4, linetype = 'dashed', size = 0.5) +
+  geom_vline(xintercept = -z_c, color = 4, linetype = 'dashed', size = 0.5) +
+  labs(x = "", y = "") +
+  annotate(geom="text", x=3.6, y=0.3, label="Reject H0",
+           color="red") +
+  annotate(geom="text", x=3.6, y=0.26, label="if p-value < alpha",
+           color="red")
+grid.arrange(p1,p2,ncol=1,nrow=2)
+```
+
+## Decision rule based on p-value
+```{r eval=TRUE,message=FALSE, out.width="100%", fig.align = 'center', echo=FALSE}
+library(ggplot2)
+library(gridExtra)
+
+z_c = 1.2
+z_a = qnorm(0.05,0,1,lower.tail = FALSE)
+p1 <- ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line',
+                xlim = c(-5,5), color = "blue") +
+  geom_vline(xintercept = 0, color = "blue", linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(z_c,5), fill = 4, alpha = 0.5) +
+  geom_vline(xintercept = z_c, color = 4, linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(z_a,5), fill = "orange", alpha = 0.5) +
+  geom_vline(xintercept = z_a, color = "orange", linetype = 'dashed', size = 0.5) +
+  labs(x = "Upper-Tail Test with alpha = 0.05", y = "") +
+  annotate(geom="text", x=3.6, y=0.3, label="Do not reject H0",
+           color="red") +
+  annotate(geom="text", x=3.6, y=0.26, label="if p-value >= alpha",
+           color="red")
+
+z_c = 2
+z_a = qnorm(0.05,0,1,lower.tail = FALSE)
+p2 <- ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line',
+                xlim = c(-5,5), color = "blue") +
+  geom_vline(xintercept = 0, color = "blue", linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(z_a,5), fill = "orange", alpha = 0.5) +
+  geom_vline(xintercept = z_a, color = "orange", linetype = 'dashed', size = 0.5) +
+  labs(x = "", y = "") +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(z_c,5), fill = 4, alpha = 0.5) +
+  geom_vline(xintercept = z_c, color = 4, linetype = 'dashed', size = 0.5) +
+  annotate(geom="text", x=3.6, y=0.3, label="Reject H0",
+           color="red") +
+  annotate(geom="text", x=3.6, y=0.26, label="if p-value < alpha",
+           color="red")
+grid.arrange(p1,p2,ncol=1,nrow=2)
+```
+
+## Decision rule based on p-value
+```{r eval=TRUE,message=FALSE, out.width="100%", fig.align = 'center', echo=FALSE}
+library(ggplot2)
+library(gridExtra)
+
+z_c = 1.2
+z_a = qnorm(0.05,0,1,lower.tail = FALSE)
+p1 <- ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line',
+                xlim = c(-5,5), color = "blue") +
+  geom_vline(xintercept = 0, color = "blue", linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-z_c), fill = 4, alpha = 0.5) +
+  geom_vline(xintercept = -z_c, color = 4, linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-z_a), fill = "orange", alpha = 0.5) +
+  geom_vline(xintercept = -z_a, color = "orange", linetype = 'dashed', size = 0.5) +
+  labs(x = "Lower-Tail Test with alpha = 0.05", y = "") +
+  annotate(geom="text", x=3.6, y=0.3, label="Do not reject H0",
+           color="red") +
+  annotate(geom="text", x=3.6, y=0.26, label="if p-value >= alpha",
+           color="red")
+
+text <- paste0("Two-Tail Test with alpha = 0.05")
+
+z_c = 2
+z_a = qnorm(0.05,0,1,lower.tail = FALSE)
+p2 <- ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line',
+                xlim = c(-5,5), color = "blue") +
+  geom_vline(xintercept = 0, color = "blue", linetype = 'dashed', size = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-z_a), fill = "orange", alpha = 0.5) +
+  geom_vline(xintercept = -z_a, color = "orange", linetype = 'dashed', size = 0.5) +
+  labs(x = "", y = "") +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-z_c), fill = 4, alpha = 0.5) +
+  geom_vline(xintercept = -z_c, color = 4, linetype = 'dashed', size = 0.5) +
+  annotate(geom="text", x=3.6, y=0.3, label="Reject H0",
+           color="red") +
+  annotate(geom="text", x=3.6, y=0.26, label="if p-value < alpha",
+           color="red")
+grid.arrange(p1,p2,ncol=1,nrow=2)
+```
+
+## Exercise 2
+Supporters claim that a new windmill can generate an average of at least 800 kilowatts of power per day. Daily power generation for the windmill is assumed to be normally distributed with a standard deviation of 120 kilowatts. A simple random sample of 100 days is taken to test this claim against the alternative hypothesis that the true mean is less than 800 kilowatts. The claim will not be rejected if the sample mean is 776
+kilowatts or more and rejected otherwise. 
+\begin{enumerate}
+    \item [(a)] What is the probability $\alpha$ of a Type I error using the decision rule if the population mean is, in fact, 800 kilowatts per day?
+    \item [(b)] What is the probability $\beta$ of a Type II error using this decision rule if the population mean is, in fact, 740 kilowatts per day?
+    \item [(c)] Suppose that the same decision rule is used, but with a sample of 200 days rather than 100 days.
+    \begin{enumerate}
+        \item [(i)] Would the value of $\alpha$ be larger than, smaller than, or the same as that found in part (a)? Explain.
+        \item [(ii)] Would the value of $\beta$ be larger than, smaller than, or the same as that found in part (b)? Explain.
+    \end{enumerate}
+\end{enumerate}
+
+## Hypothesis Testing
+Denote $\mu$ the population mean of daily power generated by the windmill.
+\begin{itemize}
+    \item Null hypothesis $H_0$
+        \pause
+        \begin{itemize}
+            \item [$\square$] $H_0$: The population mean is at least 800 kilowatts\\
+                  $H_0: \mu \geq 800$
+    \end{itemize}
+    \vspace{1.5mm}
+    \item Alternative hypothesis $H_1$
+        \pause
+        \begin{itemize}
+            \item [$\square$] $H_1$: The population mean is less than 800 kilowatts\\
+                  $H_1: \mu < 800$\\
+        \end{itemize}
+    \vspace{1.5mm}
+    \item Decision rule
+        \pause
+        \begin{itemize}
+            \item [$\square$] Do not reject $H_0$ if the sample mean is 776 kilowatts or more and reject $H_0$ otherwise. \\
+        \end{itemize}
+    \vspace{1.5mm}
+\end{itemize}
+
+## Hypothesis Testing
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GLASGOW/GTA/ECON1013/Labs/Lab 3/Power of the Test.png")
+```
+
+
+## Hypothesis Testing
+```{r, echo = FALSE, out.width = '80%', fig.align = 'center'}
+library(ggplot2)
+ggplot(data.frame(x = 700:900), aes(x)) + 
+  stat_function(fun = dnorm, args = c(800,120/sqrt(100)), geom = 'area', 
+                xlim = c(700,776), fill = 7) +
+  stat_function(fun = dnorm, args = c(800,120/sqrt(100)), col = 2) +
+  stat_function(fun = dnorm, args = c(760,120/sqrt(100)), geom = 'area', 
+                xlim = c(776,900), fill = 3) +
+  stat_function(fun = dnorm, args = c(760,120/sqrt(100)), col = 4) +
+  geom_vline(xintercept = 800, color = 2, linetype = 'dashed', size = 0.3) +
+  geom_vline(xintercept = 760, color = 4, linetype = 'dashed', size = 0.3) +
+  geom_vline(xintercept = 776, color = 7, linetype = 'dashed', size = 1) +
+  labs(x = "", y = "") +
+  theme(axis.ticks.x = element_blank(),
+        axis.text.x = element_blank())
+```
+
+
+## (a) What is $\alpha$ if $\mu = 800$ kilowatts per day?
+$$
+\alpha = P(\textcolor{orange}{\text{ Reject } H_0} | \textcolor{red}{H_0 \text{ is true}})
+$$
+$$
+\Longleftrightarrow \alpha = P(\textcolor{orange}{\bar{X} < 776} | \textcolor{red}{\mu = 800})
+$$
+
+Under the null hypothesis $H_0$:
+$$
+\alpha = P\left(\frac{\bar{X}-\textcolor{red}{800}}{\sigma/\sqrt{n}} < \frac{776-\textcolor{red}{800}}{\sigma/\sqrt{n}}\right) = P\left(Z < \frac{776-\textcolor{red}{800}}{120/\sqrt{100}}\right) = P\left(Z < -2\right)
+$$
+
+where $Z = \frac{\bar{X}-\textcolor{red}{800}}{\sigma/\sqrt{n}} \sim N(0,1); \sigma = 120; n =100$
+
+\vspace{3mm}
+\pause
+
+Looking at the statistical table:
+$$
+P\left(Z < -2\right) = 0.0228 \Longrightarrow \alpha = 0.028
+$$
+
+## (b) What is $\beta$ if $\mu = 740$ kilowatts per day?
+$$
+\beta = P(\textcolor{green}{\text{ Do not reject } H_0} | \textcolor{blue}{H_0 \text{ is false}})
+$$
+
+$$
+\Longleftrightarrow \beta = P(\textcolor{green}{\bar{X} \geq 776} | \textcolor{blue}{\mu = 740})
+$$
+
+Under the alternative hypothesis $H_1$:
+$$
+\beta = P\left(\frac{\bar{X}-\textcolor{blue}{740}}{\sigma/\sqrt{n}} \geq \frac{776-\textcolor{blue}{740}}{\sigma/\sqrt{n}}\right) = P\left(Z \geq \frac{776-\textcolor{blue}{740}}{120/\sqrt{100}}\right) = P\left(Z \geq 3\right)
+$$
+where $Z = \frac{\bar{X}-\textcolor{blue}{740}}{\sigma/\sqrt{n}} \sim N(0,1); \sigma = 120; n =100$
+
+\vspace{3mm}
+\pause
+Looking at the statistical table:
+$$
+P\left(Z < 3\right) = 0.9987 \Longrightarrow \beta = 1-0.9987 = 0.013
+$$
+
+## (c) Same decision rule is used, but with a sample of 200 days rather than 100 days
+\begin{enumerate}
+        \item [(i)] Would the value of $\alpha$ be larger than, smaller than, or the same as that found in part (a)? Explain.
+        
+\pause 
+\vspace{3mm}
+
+$$
+        \alpha = P\left(Z < \frac{776-800}{120/\textcolor{purple}{\sqrt{200}}}\right) = P\left(Z < -2{\textcolor{purple}{\sqrt{2}}}\right)
+$$
+become \textit{smaller}
+\end{enumerate}
+
+## (c) Same decision rule is used, but with a sample of 200 days rather than 100 days
+\begin{enumerate}
+        \item [(ii)] Would the value of $\beta$ be larger than, smaller than, or the same as that found in part (b)? Explain.
+        
+\pause 
+\vspace{3mm}
+
+$$
+\beta = P\left(Z \geq \frac{776-740}{120/\textcolor{purple}{\sqrt{200}}}\right) = P\left(Z \geq 3\textcolor{purple}{\sqrt{2}}\right)
+$$
+become \textit{smaller}
+\end{enumerate}
+
+

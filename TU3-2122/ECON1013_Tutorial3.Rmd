@@ -1,0 +1,96 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "Feb 2022"
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  slidy_presentation: default
+  ioslides_presentation: default
+subtitle: 'ECON1013: TUTORIAL 3'
+fontsize: 10pt
+institute: University of Glasgow
+---
+
+## Exercise 1
+In the mid-term elections of 2006, the political winds were shifting. One of the key races
+for control of the Senate was in Virginia, where challenger Jim Webb and incumbent
+George Allen were in a very tight race. Just a week before the election, the Associated Press reported on a CNN poll based on telephone interviews of $597$ registered
+voters who identified themselves as likely to vote. Webb was the choice of $299$ of those
+surveyed. The article went on to state, “Because Webb’s edge is equal to the margin
+error of plus or minus $4$ percentage point, it means that he can be considered slightly
+ahead".
+\begin{enumerate}
+  \item The article stated that the margin error was $4\%$. Which is the significance level?
+  \item Compute the confidence interval. Would you agree with that statement that Webb is slightly ahead?
+  \item What is the interpretation of the margin error?
+  \item Would you consider consecutive polls as samples from the same population? Justify your answer.
+\end{enumerate}
+
+## The article stated that the margin error was $4\%$. Which is the significance level?
+\pause
+The sample proportion is: $\hat{p} = \frac{299}{597} = 0.5008$. Margin of error for the sample proportion is given by the formula:
+$$
+ME = z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+$$
+Hence
+
+$$
+0.04 = z_{\alpha/2}\sqrt{\frac{0.5008*(1-0.5008)}{597}}
+$$
+$$
+\Rightarrow z_{\alpha/2} \approx 1.9547
+$$
+
+Then, the significance level is:
+\begin{align*}
+\alpha &= 2*P(Z>1.9547)\\ 
+       &= 2*[1-P(Z\leq1.9547)]\\
+       &\approx 0.05
+\end{align*}
+
+## Compute the confidence interval. Would you agree with that statement that Webb is slightly ahead?
+\pause
+$\hat{p}=299/597$, hence $\hat{p}\pm 0.04$ gives the confidence interval $(0.4608, 0.5408)$. No statistical reason to say Webb is slightly ahead, interval symmetric around parity ($\hat{p}\approx 0.5$).
+
+## What is the interpretation of the margin error?
+\pause
+The margin error (ME) refers to the sample variability, that is it reflects the extent to which $\hat{p}$ varies if repeated sample of the same size are drawn from the same population.
+
+## Would you consider consecutive polls as samples from the same population? Justify your answer.
+\pause
+No, the opinions can change between one poll and the other (different elections) because the opinion of the voting population can be affected the scandals, reputation of the candidate, position of the candidates on important events, etc.
+
+
+## Exercise 2
+A random sample of size 2, $Y_1$ and $Y_2$ is drawn from the the pdf 
+$$
+f(y;\theta)=2y\theta^2,\qquad 0<y<\frac{1}{\theta}
+$$
+\begin{enumerate}
+  \item What must $c$ be equal if the statistic 
+$c(Y_1+2Y_2)$ to be an unbiased estimator of $1/\theta?$
+  \item Find an alternative unbiased estimator for $1/\theta$.
+\end{enumerate}
+
+
+## What must $c$ be equal if the statistic $c(Y_1+2Y_2)$ to be an unbiased estimator of $1/\theta?$
+\pause
+Note that
+$$
+E(Y)=2\theta^2\int_{0}^{1/\theta}y^2dy=\frac{2\theta^2}{3}\left[y^3\right]_0^{1/\theta}=\frac{2}{3\theta}
+$$
+By the linearity of the expectation
+$$
+E\left[c(Y_1+2Y_2)\right]=c\left(\frac{2}{3\theta}+\frac{4}{3\theta}\right)=\frac{2c}{\theta}
+$$
+Hence, $c=1/2$.
+
+## Find an alternative unbiased estimator for $1/\theta$
+\pause
+Recalling that $E(Y)=2/(3\theta)$, and unbiased estimator is 
+$$
+\frac{3}{4}\left(Y_1+Y_2\right)
+$$
+
