@@ -1,0 +1,808 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "Spring 2024"
+institute: University of Glasgow
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  slidy_presentation: default
+  ioslides_presentation: default
+  pdf_document: default
+subtitle: 'ECON1013: TUTORIAL 2'
+fontsize: 11pt
+geometry: left = 1cm, right = 0.5cm, top = 0.5cm, bottom = 0.5cm
+linestretch: 1.5
+linkcolor: blue
+header-includes:
+- \titlegraphic{\includegraphics[scale=0.05]{pictures/GlaLogo.pdf}}
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{array}
+- \usepackage{longtable}
+- \setbeamertemplate{itemize item}{$\diamond$}
+- \setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+- \setbeamertemplate{itemize subsubitem}{\scriptsize$\gg$}
+- \definecolor{blue}{RGB}{0,114,178}
+- \definecolor{red}{RGB}{213,94,0}
+- \definecolor{yellow}{RGB}{240,228,66}
+- \definecolor{green}{RGB}{0,158,115}
+---
+
+## Intro
+
++ Duong Trinh
+  + PhD Student in Economics (Bayesian Microeconometrics)
+  + Email: \underline{Duong.Trinh@glasgow.ac.uk}
+
+\vspace{3mm}
+
++ ECON1013-TU04
+  + Monday 12-1 pm
+  + 4 sessions (22-Jan, 5-Feb, 19-Feb, 4-March)
+
++ ECON1013-TU05
+  + Tuesday 12-1 pm
+  + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March)
+  
++ ECON1013-TU07
+  + Tuesday 2-3 pm
+  + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March)
+
+## Record Attendance
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU2-2324/pictures/QRcodeAtd_TU04.png")
+```
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU2-2324/pictures/QRcodeAtd_TU05.png")
+```
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU2-2324/pictures/QRcodeAtd_TU07.png")
+```
+
+## Exercise 1
+
+::: columns 
+
+:::: {.column width=.7}
+
++ Let $X$ be the amount of exported grain next month (in tonnes) of a grain exporting company. 
+
+\vspace{3mm}
+
++ Based on previous exporting records, the company estimates that the exporting probabilities and amounts.
+
+::::
+
+:::: column
+
+\begin{table}
+\centering
+\begin{tabular}{cc}
+\hline
+x & P(x) \tabularnewline
+\hline
+100 & 0.05 \tabularnewline
+150 & 0.20 \tabularnewline
+200 & 0.50 \tabularnewline
+250 & 0.20 \tabularnewline
+300 & 0.05 \tabularnewline
+\hline
+\end{tabular}
+\end{table}
+
+::::
+
+:::
+
+## Exercise 1
+
+(a) What is the probability that the company does not export more than 250 tonnes?  
+
+\quad\quad $\color{blue}{P(X \leq 250) = ?}$
+
+(b) What is the expected amount of tonnes that the company will export?
+
+\quad\quad $\color{blue}{E[X] = ?}$
+
+(c) What is the standard deviation?
+
+\quad\quad $\color{blue}{\sqrt{Var[X]} = ?}$
+
+## (a) What is the probability that the company doesn't export more than 250 tonnes?
+
+::: columns 
+
+:::: {.column width=.7}
+
++ From the cumulative probability distribution we see that the probability that the company does not export more than $250$ tonnes is
+$$
+P(X\leq 250) = F(250) = 0.95
+$$
+
+::::
+
+:::: column
+
+\begin{table}
+\centering
+\begin{tabular}{ccc}
+\hline
+x & P(x) & F(x) \tabularnewline
+\hline
+100 & 0.05 & 0.05 \tabularnewline
+150 & 0.20 & 0.25\tabularnewline
+200 & 0.50 & 0.75\tabularnewline
+250 & 0.20 & 0.95\tabularnewline
+300 & 0.05 & 1.00\tabularnewline
+\hline
+\end{tabular}
+\end{table}
+
+::::
+
+:::
+
+## (b) What is the expected amount of tonnes that the company will export?
+
+\small
+
+$$
+\begin{aligned}
+E[X] = \mu &= \sum_x xP(x)\\
+&= 100\times 0.05 + 150 \times 0.20 + 200 \times 0.50 + 250\times 0.20 + 300\times 0.05\\ 
+&=200
+\end{aligned}
+$$
+
+## (c) What is the standard deviation?
+
+\small
+
+$$
+\begin{aligned}
+\sigma &= \sqrt{\sum_x (x-\mu)^2 P(x)}\\
+&= \sqrt{(100-200)^2 \times 0.05 + (150-200)^2 \times 0.20 + \ldots + (300-200)^2\times 0.05}\\
+&= \sqrt{2000}\\
+&\approx 44.72
+\end{aligned}
+$$
+
+## Exercise 1
+
+::: columns 
+
+:::: {.column width=.7}
+
++ Let $Y$ be the amount of exported salt (in tonnes) next month of the company. 
+
+\vspace{5mm}
+
++ The contracts for salt allow for salt being sold in
+much smaller quantities, making it a continuous random variable.
+$$
+Y \sim \mathcal{N}(120,30^2)
+$$
+
+::::
+
+:::: column
+
+\small
+$$
+\mu_Y = 120; \quad \sigma_Y = 30
+$$
+
+```{r eval=TRUE,message=FALSE, warning=FALSE, out.width="80%", fig.align = 'center', echo=FALSE}
+library(ggplot2)
+ggplot(data.frame(x = 10:220), aes(x)) + 
+  # stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+  #               xlim = c(0.5983,5), fill = 4, alpha = 0.5) +
+  # stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+  #               xlim = c(-5,-0.5983), fill = 4, alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(120,30), geom = 'line', 
+                xlim = c(10,220), color = "blue") +
+  # geom_vline(xintercept = 0.5983, color = 4, linetype = 'dashed', size = 0.5) +
+  # geom_vline(xintercept = -0.5983, color = 4, linetype = 'dashed', size = 0.5) +
+  geom_vline(xintercept = 120, linetype = 'longdash', size = 0.5, alpha = 0.5) +
+  labs(x = "", y = "") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5,size=36),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size=24),
+        axis.text.y = element_text(size=24)) 
+```
+
+::::
+
+:::
+
+## Exercise 1
+
+(d) What is the probability that the amount of exported salt next month will not be bigger than $160$ tonnes?
+
+\quad\quad $\color{blue}{P(Y \leq 1600) = ?}$
+
+(e) What is the probability that the amount of exported salt next month will be between $80$ and $160$ tonnes?
+
+\quad\quad $\color{blue}{P(80 \leq Y \leq 160) = ?}$
+
+## (d) What is the probability that the amount of exported salt next month will not be bigger than $160$ tonnes?
+
+\normalsize
+S1. Transform $Y$ into the standard normal random variable $Z$
+\small
+$$
+Z = \frac{Y - \mu}{\sigma} = \frac{Y - 120}{30}; \quad Z \sim \mathcal{N}(0,1^2)
+$$
+
+\normalsize
+S2. Rewrite the probability by transforming $160$ tonnes to $Z$ units
+\small
+$$
+P(Y \leq 160) = P\left(\frac{Y - 120}{30} \leq \frac{160 - 120}{30}\right) \approx P\left(Z \leq 1.33\right)
+$$
+
+\normalsize
+S3. Looked up from a standard normal distribution statistical table
+\small
+$$
+P\left(Z \leq 1.33\right) = F(1.33) \approx 0.908
+$$
+
+## (d) What is the probability that the amount of exported salt next month will not be bigger than $160$ tonnes?
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU2-2324/pictures/Zat1.33.png")
+```
+
+## (e) What is the probability that the amount of exported salt next month will be between $80$ and $160$ tonnes?
+\normalsize
+S1. Transform $Y$ into the standard normal random variable $Z$
+\small
+$$
+Z = \frac{Y - \mu}{\sigma} = \frac{Y - 120}{30}
+$$
+\normalsize
+S2. Rewrite the probability
+\small
+$$
+\begin{aligned}
+P(80 \leq Y \leq 160) &= P\left(\frac{80 - 120}{30} \leq \frac{Y - 120}{30} \leq \frac{160 - 120}{30}\right)\\
+&\approx P\left(-1.33 \leq Z \leq 1.33\right)\\
+&= 1 - [ P\left(Z \geq 1.33\right) + P\left(Z \leq -1.33\right)]\\
+&= 1- 2P\left(Z \geq 1.33\right)\\
+&= 1 -2[1-P\left(Z \leq 1.33\right)]\\
+&= 2F(1.33)\\
+& \approx 2 \times 0.908 -1 = 0.816
+\end{aligned}
+$$
+
+## (e) What is the probability that the amount of exported salt next month will be between $80$ and $160$ tonnes?
+
+```{r eval=TRUE, message=FALSE, out.width="80%", fig.align = 'center', echo=FALSE}
+library(ggplot2)
+ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-1.33,1.33), fill = "#0248FF", alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,-1.33), fill = "#D55E00", alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(1.33,5), fill = "#D55E00", alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line', 
+                xlim = c(-5,5), color = "#0248FF") +
+  geom_vline(xintercept = 1.33, color = "#0248FF", linetype = 'dashed', linewidth = 0.5) +
+  geom_vline(xintercept = -1.33, color = "#0248FF", linetype = 'dashed', linewidth = 0.5) +
+  geom_vline(xintercept = 0, linetype = 'longdash', linewidth = 0.5, alpha = 0.5) +
+  labs(x = "", y = "") +
+  theme_minimal()
+```
+
+## (e) What is the probability that the amount of exported salt next month will be between $80$ and $160$ tonnes?
+
+```{r eval=TRUE, message=FALSE, out.width="80%", fig.align = 'center', echo=FALSE}
+library(ggplot2)
+ggplot(data.frame(x = -5:5), aes(x)) + 
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(-5,1.33), fill = "#009E73", alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'area', 
+                xlim = c(1.33,5), fill = "#D55E00", alpha = 0.5) +
+  stat_function(fun = dnorm, args = c(0,1), geom = 'line', 
+                xlim = c(-5,5), color = "#0248FF") +
+  geom_vline(xintercept = 1.33, color = "#0248FF", linetype = 'dashed', linewidth = 0.5) +
+  geom_vline(xintercept = 0, linetype = 'longdash', linewidth = 0.5, alpha = 0.5) +
+  labs(x = "", y = "") +
+  theme_minimal()
+```
+
+## Exercise 2
+
++ A population consists of all first-year primary school students in a specific neighborhood $(N = 500)$.
+
++ Administrative data on the number of years spent in nursery of the full population of students:
+  + Population mean: $\mu = 3$
+  + Population standard deviation: $\sigma = 1.6$
+  
++ Pick a random sample of $n = 47$ students.
+  +  Denote by $\bar{X}$ the random variable "sample mean" and by $\bar{x}$ its realization.
+
+
+## Exercise 2
+
+(a) Explain what do we mean by "*the sampling distribution of the sample mean* ($\bar{X}$)"?
+
+(b) Using your knowledge about sampling (without making any calculations), characterize the sampling distribution of $\bar{X}$. 
+
+(c) Calculate the *mean* and *standard deviation* of the sampling distribution.
+
+(d) What values of $\bar{X}$ are likely? Would, for example, a sample mean $\bar{x} = 3.5$ be likely or unlikely?
+
+## (a) Explain what do we mean by "*the sampling distribution of the sample mean* ($\bar{X}$)"?
+
++ It tells us how sample means are distributed across samples 
+
++ It tells us how likely are different possible values of $\bar{x}$ given the population parameters and the sample size.
+
+```{r eval=FALSE, warning=FALSE, echo=FALSE}
+library(DiagrammeR)
+
+DiagrammeR::grViz("digraph flowchart {
+      # node definitions with substituted label text
+      node [fontname = Helvetica, shape = rectangle]
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      
+      # edge definitions with the node IDs
+      tab1 -> tab2;
+      tab1 -> tab3;
+      tab1 -> tab4;
+      }
+      
+      [1]: 'Population'
+      [2]: 'Sample1'
+      [3]: 'Sample2'
+      [4]: 'Sample3'
+      ")
+
+```
+
+<!-- \begin{tikzpicture} -->
+<!-- \draw (0,0) circle (2cm); -->
+<!-- \end{tikzpicture} -->
+
+## (b) Characterize the sampling distribution of $\bar{X}$. 
+
+\textcolor{red}{Central Limit Theorem}
+
+  + In word: the sampling distribution of the sample mean is approximately normal when the sample size is large enough.
+  
+  + In math: 
+  
+  $$
+  \bar{X} \sim \mathcal{N}\left(\mu_{\bar X},\sigma^2_{\bar X}\right)
+  $$
+
+
+Sample size $n = 47$ is sufficiently large (i.e. $\geq 30$) to have an approximately normally distributed sampling distribution of the sample mean. This is true even if the population distribution of $X$ is
+not normal.
+
+## {}
+
+```{r eval=TRUE,message=FALSE,warning=FALSE,echo=FALSE}
+library(ggplot2)
+library(gridExtra)
+library(latex2exp)
+
+set.seed(123)
+# "R" is the number of replications
+R <- 1000
+
+fml_delta0Est <- TeX(sprintf(r'($\mu = 3$)'))
+
+p1 <- ggplot(data.frame(x = c(-3,9)), aes(x)) + 
+  stat_function(fun = dnorm, args = c(3,1.6), geom = 'area', fill = "#0248FF", alpha = 0.6) + 
+  stat_function(fun = dnorm, args = c(3,1.6), geom = 'line', color = "#0248FF") + 
+  geom_vline(xintercept = 3, linetype = 'longdash', color = "red", size = 0.5, alpha = 0.5) +
+  ggtitle(TeX(sprintf(r'(Population distribution $X \sim N(3,1.6^2)$)'))) +
+  # ylim(0,0.5) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5,size=15),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(),
+        axis.text.y = element_text())
+
+GenrData <- function(n) {
+  # Create the vector Y (pre-allocation) to store the R standardized sample averages
+  Y = numeric(0) 
+  for (i in 1:R) {
+    mu = 3
+    sigma = 1.6
+    X = rnorm(n,mu,sigma) # The sample will change for every "i"
+    # Compute standardized sample average
+    Y[i] = mean(X)
+  }
+  return(list(Y=Y,mu=mean(Y),sig=sd(Y)))
+}
+
+plotY <- function(ls,n){
+  Y <- ls$Y
+  mu <- round(ls$mu,3)
+  sig <- ls$sig
+  ggplot(data.frame(Y),aes(Y))+
+  geom_histogram(color = "#0248FF",fill="#0248FF",
+                 alpha=0.5, bins = 80)+
+  geom_vline(aes(xintercept = mean(Y)), linetype = 'longdash', color = "red") +
+  ggtitle(paste0("Sample size n = ",n)) +
+  labs(x = TeX(sprintf(r'(Mean $\bar{X})')), y = "") +
+  xlim(1,5) +
+  ylim(0,200) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5,size=15),
+        # axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(),
+        axis.text.y = element_text())
+}
+
+# Y <- GenrData(n=10)
+# 
+# plotY <- function(Y,n){
+#   hist(Y, freq = FALSE,
+#        main=paste0("n = ",n))
+#   curve(dnorm(x, mean=3, sd=1.6/sqrt(n)), 
+#       col="darkblue", lwd=2, add=TRUE, yaxt="n"
+#       )
+# }
+
+h1 <- plotY(ls=GenrData(n=10),n=10)
+h2 <- plotY(ls=GenrData(n=47),n=47)
+h3 <- plotY(ls=GenrData(n=200),n=200)
+
+grid.arrange(p1,
+             h1,h2,h3,
+             ncol=3,nrow=2,
+             layout_matrix = rbind(c(1,1,1), c(2,3,4)))
+```
+
+## {}
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(gridExtra)
+library(latex2exp)
+
+set.seed(123)
+# "R" is the number of replications
+R <- 1000
+
+fml_delta0Est <- TeX(sprintf(r'($\mu = 3$)'))
+
+p1 <- ggplot(data.frame(x = c(-3,9)), aes(x)) + 
+  stat_function(fun = dgamma, args = c(9/1.6^2,3/1.6^2), geom = 'area', fill = "#0248FF", alpha = 0.6) + 
+  stat_function(fun = dgamma, args = c(9/1.6^2,3/1.6^2), geom = 'line', color = "#0248FF") + 
+  geom_vline(xintercept = 3, linetype = 'longdash', color = "red", size = 0.5, alpha = 0.5) +
+  ggtitle(TeX(sprintf(r'(Population distribution $X \sim$ Gamma(3.516,1.172); $\mu = 3$ and $\sigma = 1.6$)'))) +
+  # ylim(0,0.5) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5,size=15),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(),
+        axis.text.y = element_text())
+
+GenrData <- function(n) {
+  # Create the vector Y (pre-allocation) to store the R standardized sample averages
+  Y = numeric(0) 
+  for (i in 1:R) {
+    mu = 3
+    sigma = 1.6
+    X = rgamma(n,shape = 9/1.6^2, rate = 3/1.6^2) # The sample will change for every "i"
+    # Compute standardized sample average
+    Y[i] = mean(X)
+  }
+  return(list(Y=Y,mu=mean(Y),sig=sd(Y)))
+}
+
+plotY <- function(ls,n){
+  Y <- ls$Y
+  mu <- round(ls$mu,3)
+  sig <- ls$sig
+  ggplot(data.frame(Y),aes(Y))+
+  geom_histogram(color = "#0248FF",fill="#0248FF",
+                 alpha=0.5, bins = 80)+
+  geom_vline(aes(xintercept = mean(Y)), linetype = 'longdash', color = "red") +
+  ggtitle(paste0("Sample size n = ",n)) +
+  labs(x = TeX(sprintf(r'(Mean $\bar{X})')), y = "") +
+  xlim(1,5) +
+  ylim(0,200) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5,size=15),
+        # axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(),
+        axis.text.y = element_text())
+}
+
+# Y <- GenrData(n=10)
+# 
+# plotY <- function(Y,n){
+#   hist(Y, freq = FALSE,
+#        main=paste0("n = ",n))
+#   curve(dnorm(x, mean=3, sd=1.6/sqrt(n)), 
+#       col="darkblue", lwd=2, add=TRUE, yaxt="n"
+#       )
+# }
+
+h1 <- plotY(ls=GenrData(n=10),n=10)
+h2 <- plotY(ls=GenrData(n=47),n=47)
+h3 <- plotY(ls=GenrData(n=200),n=200)
+
+grid.arrange(p1,
+             h1,h2,h3,
+             ncol=3,nrow=2,
+             layout_matrix = rbind(c(1,1,1), c(2,3,4)))
+```
+
+## (c) Calculate the *mean* and *standard deviation* of the sampling distribution.
+
++ The mean of the sampling distribution for the sample mean will be the same as the population mean
+$$
+\mu_{\bar{X}} = \mu = 3
+$$
+
++ The standard deviation of the sampling distribution for the sample mean is given by
+$$
+\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} = \frac{1.6}{\sqrt{47}} \approx 0.23
+$$
+
+## (d) What values of $\bar{X}$ are likely? Would, for example, a sample mean $\bar{x} = 3.5$ be likely or unlikely?
+
++ For random variable which follows a normal distribution, more than 95% of the probability mass is located with a distance of at most 2 standard deviations from the mean. 
+
++ In the case of the sample mean, we know that $\bar{X} \sim \mathcal{N}\left(\mu_{\bar X},\sigma^2_{\bar X}\right)$, hence
+
+$$
+\begin{aligned}
+&P(\mu_{\bar{X}}-2\sigma_{\bar{X}} \leq \bar{x} \leq \mu_{\bar{X}}+2\sigma_{\bar{X}}) > 95\% \\
+\Rightarrow \quad &P(3-2\cdot0.23 \leq \bar{x} \leq 3+2\cdot0.23) > 95\% \\
+\Rightarrow \quad &P(2.54 \leq \bar{x} \leq 3.46) > 95\%
+\end{aligned}
+$$
++ In other words, values of the sample mean that are below $2.54$ or above $3.46$ happen relatively rarely. On the other hand, a sample mean like 3.5 is not impossible.
+
+## 68–95–99.7 rule
+
+::: columns
+
+:::: {.column width=.5}
+
+When $X \sim \mathcal{N}(\mu, \sigma^2)$,
+
+$$
+\begin{aligned}
+\Pr(\mu -1\sigma \leq X\leq \mu +1\sigma )&\approx 68.27\%\\
+\Pr(\mu -2\sigma \leq X\leq \mu +2\sigma )&\approx 95.45\%\\
+\Pr(\mu -3\sigma \leq X\leq \mu +3\sigma )&\approx 99.73\%
+\end{aligned}
+$$
+
+::::
+
+:::: column
+
+```{r, echo=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU2-2324/pictures/68-95-99.7_RULE.png")
+```
+
+::::
+
+:::
+
+## Exercise 3
+
+A population contains two million **zeros** an nine million **ones**.
+
++ *Hint*: Make a table which contains all the possible values of the sample mean when $n = 4$ and their probabilities.
+
++ *Hint*: Remember that when the data is binary ($0/1$), there is a link between the sample mean and the sample proportion.
+
+(b) What is the approximate sampling distribution of the sample mean, when the sample size is $n = 50$?
+
+## (a) What is the sampling distribution of the sample mean, when the sample size is $n = 4$?
+
+Drawing $4$ observations from a population of zeros and ones, we have $5$ different possible samples
+
++ $\{0,0,0,0\}$ $\rightarrow$ sample mean $=0$
++ $\{1,0,0,0\}$ $\rightarrow$ sample mean $=1/4$
++ $\{1,1,0,0\}$ $\rightarrow$ sample mean $=1/2$
++ $\{1,1,1,0\}$ $\rightarrow$ sample mean $=3/4$
++ $\{1,1,1,1\}$ $\rightarrow$ sample mean $=1$
+
+\vspace{3mm}
+
+\pause
+
++ $\color{blue}{\{Y_1,Y_2,Y_3,Y_4\} \mid Y_i = 0 \text{ or } Y_i = 1}$   
+sample mean $= \frac{\sum_{i=1}^4Y_i}{4} = \frac{\text{number of 1s}}{\text{sample size}} =$ sample proportion $=\hat{p}$.
+
+## (a) What is the sampling distribution of the sample mean, when the sample size is $n = 4$?
+\small
+
+Formula for the probability of $x$ successes in $n$ trials [$\left[\text{Binomial distribution}\right]$](https://en.wikipedia.org/wiki/Binomial_distribution)
+
+$$
+P(x) ={\color{green}{\frac{n!}{x!\,(n-x)!}}}\,{\color{red}{p^x(1-p)^{n-x}}}, \quad \text{ for } {x = 1,\ldots,n}
+$$
+
++ Probability that the first $x$ trials to be successes and the remaining $n-x$ to be failures
+$$
+\color{red}{p\times p \times \ldots \times p \times (1-p)\times (1-p)\times \ldots \times (1-p) = p^x(1-p)^{n-x}}
+$$
+
++ The number of ways of arranging $x$ successes in $n$ trials is equal to the number of ways of choosing $x$ objects from $n$ objects
+$$
+\color{green}{{n \choose x} = \frac{n!}{x!\,(n-x)!}}
+$$
+
+## (a) When $n = 4$; $x = 0,1,2,3,4$; $p=9/11$ 
+
+::: columns 
+
+:::: column
+
+```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(xtable)
+library(kableExtra)
+
+x <- c(0,1,2,3,4)
+
+binom <- function(x) {
+  n = 4
+  p = 9/11
+  dens <- dbinom(x,n,p)
+  return(dens)
+}
+
+px <- round(binom(x),4)
+
+phat <- c("0","1/4","1/2","3/4","1")
+
+phat <- factor(phat, levels = c("0","1/4","1/2","3/4","1"))
+  
+table <- tibble(x,px,phat) %>% `colnames<-`(.,c("x","P(x)","p_hat"))
+
+table %>%
+  kbl(align = "c", booktabs = T, linesep = "") %>%
+  kable_styling(full_width = F)
+  # column_spec(1, italic = F, bold = T, color = "black")
+
+```
+
+::::
+
+:::: column
+
+```{r, eval=TRUE, echo=FALSE, message=FALSE, result='hide', warning=FALSE, out.width="90%", fig.align = 'center'}
+library(ggplot2)
+
+table %>% ggplot(aes(x=phat,y=px)) + 
+  geom_col(color = "blue",fill="steelblue",alpha=0.5) +
+  ggtitle("Probability Mass Function") +
+  labs(x="", y="") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5,size=36),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size=24),
+        axis.text.y = element_text(size=24)) 
+```
+
+::::
+
+:::
+
+## (b) What is the sampling distribution of the sample mean, when the sample size is $n = 50$?
+
++ Formula for the probability of $x$ successes in $n$ trials
+\small
+$$
+P(x) ={\color{green}{\frac{n!}{x!\,(n-x)!}}}\,{\color{red}{p^x(1-p)^{n-x}}}, \quad \text{ for } {x = 1,\ldots,n}
+$$
+
++ Making table is complicated!
+\small
+
+\begin{table}
+\centering
+\begin{tabular}{ccc}
+\hline
+x & P(x) & p\_hat \tabularnewline
+\hline
+0 & $\ldots$ & 0 \tabularnewline
+1 & $\ldots$ & 1/50\tabularnewline
+2 & $\ldots$ & 2/50 \tabularnewline
+$\vdots$ & $\vdots$ & $\vdots$ \tabularnewline
+50 & $\ldots$ & 50/50 \tabularnewline
+\hline
+\end{tabular}
+\end{table}
+
+## (b) When $n = 50$; $x = 0,1,\ldots,50$; $p=9/11$ 
+
+```{r, eval=TRUE, echo=FALSE, message=FALSE, result='hide', warning=FALSE, out.width="90%", fig.align = 'center'}
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+
+x <- c(0:50)
+n = 50
+p = 9/11
+
+binom <- function(x) {
+  dens <- dbinom(x,n,p)
+  return(dens)
+}
+
+px <- round(binom(x),4)
+phat <- x/50
+
+
+table <- tibble(x,px,phat)
+
+p1 <- table %>% ggplot(aes(x=phat,y=px)) + 
+  geom_col(color = "blue",fill="steelblue",alpha=0.5) +
+  # scale_x_discrete(breaks = 11) +
+  geom_vline(xintercept = 9/11, linetype = 'longdash', size = 0.5, alpha = 0.5) +
+  ggtitle("Sampling Distribution of p_hat") +
+  labs(x="", y="") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, size = 24),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(),
+        axis.text.y = element_text(),
+        )
+
+p2 <- ggplot(data.frame(x = c(0,1)), aes(x)) + 
+  stat_function(fun = dnorm, args = c(9/11,sqrt((9/11*2/11)/50)), geom = 'line', color = "red") + geom_vline(xintercept = 9/11, linetype = 'longdash', size = 0.5, alpha = 0.5) +
+  labs(x = "", y = "") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(),
+        axis.text.y = element_text()) 
+
+grid.arrange(p1,p2)
+```
+
+## Remark: Normal approximation for Binomial distribution
+
++ Verify that $n$ is large is enough
+$$
+n \cdot p \cdot (1-p) > 5,
+$$
+which is correct as $50 \cdot (9/11) \cdot (2/11) \approx 7.44$.
+
+\vspace{3mm}
+
++ Hence, asymptotically,
+$$
+\hat{p} \sim \mathcal{N} \left({\color{red}{p}}, {\color{green}{\frac{p(1-p)}{n}}} \right)
+$$
+where $\mu_{\hat{p}} = p = 9/11$,  
+and $\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{(9/11)\cdot (2/11)}{50}} \approx 0.055$.
