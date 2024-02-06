@@ -371,7 +371,7 @@ E[X] = \mu &= \sum_x xP(x)\\
   will not be bigger than \(160\) tonnes?
 \end{enumerate}
 
-\quad\quad \(\color{blue}{P(Y \leq 1600) = ?}\)
+\quad\quad \(\color{blue}{P(Y \leq 160) = ?}\)
 
 \begin{enumerate}
 [(a)]
@@ -575,13 +575,19 @@ example, a sample mean \(\bar{x} = 3.5\) be likely or unlikely?}
 
 \[
 \begin{aligned}
-&P(\mu_{\bar{X}}-2\sigma_{\bar{X}} \leq \bar{x} \leq \mu_{\bar{X}}+2\sigma_{\bar{X}}) > 95\% \\
-\Rightarrow \quad &P(3-2\cdot0.23 \leq \bar{x} \leq 3+2\cdot0.23) > 95\% \\
-\Rightarrow \quad &P(2.54 \leq \bar{x} \leq 3.46) > 95\%
+&P(\mu_{\bar{X}}-2\sigma_{\bar{X}} \leq \bar{X} \leq \mu_{\bar{X}}+2\sigma_{\bar{X}}) > 95\% \\
+\Rightarrow \quad &P(3-2\cdot0.23 \leq \bar{X} \leq 3+2\cdot0.23) > 95\% \\
+\Rightarrow \quad &P(2.54 \leq \bar{X} \leq 3.46) > 95\%
 \end{aligned}
-\] + In other words, values of the sample mean that are below \(2.54\)
-or above \(3.46\) happen relatively rarely. On the other hand, a sample
-mean like 3.5 is not impossible.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  In other words, values of the sample mean that are below \(2.54\) or
+  above \(3.46\) happen relatively rarely. On the other hand, a sample
+  mean like 3.5 is not impossible.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{68--95--99.7 rule}
@@ -771,6 +777,156 @@ $\vdots$ & $\vdots$ & $\vdots$ \tabularnewline
   and
   \(\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{(9/11)\cdot (2/11)}{50}} \approx 0.055\).
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Exercise 4}
+\protect\hypertarget{exercise-4}{}
+A small company has six employees, whose years of experience are \[
+\left\{2\quad  4\quad  6\quad 6\quad 7\quad  8\right\}.
+\] Two of these employees are to be chosen randomly for a particular
+work group.
+
+Let us consider the average number of years of experience of the two
+employees \(\{X_1,X_2\}\) chosen randomly from the population of six. We
+denote by \(\bar{X}_2\) the random variable sample means and by
+\(\bar{x}_2\) its realization.
+\end{frame}
+
+\begin{frame}{Exercise 4}
+\protect\hypertarget{exercise-4-1}{}
+\begin{enumerate}
+[(a)]
+\item
+  Compute the population mean \(\mu_X\) and the population variance
+  \(\sigma_X^2\).
+\item
+  Compute the sampling distribution of \(\bar{X}_2\).
+\item
+  Compute the expectation of \(\bar{X}_2\) using the above sampling
+  distribution and compare it with \(\mu_X\).
+\item
+  Compute the variance of \(\bar{X}_2\) using the sampling distribution
+  computed above. Compare your result with \(\sigma^2_X/2\), which would
+  compute the variance of \(\bar{X}_2\) if \(\{X_1,X_2\}\) was a simple
+  random sample.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Exercise 4}
+\protect\hypertarget{exercise-4-2}{}
+The variance \(\sigma^2_X\) is unknown. Let us consider the sample
+variance of the \(\{X_1,X_2\}\), denoted by \(s^2_2\).
+
+\begin{enumerate}
+[(a)]
+\setcounter{enumi}{4}
+\item
+  Compute the sampling distribution of \(s^2_2\).
+\item
+  Compute the expectation of \(s^2_2\) using the above sampling
+  distribution and compare it with \(\sigma^2_X\).
+\item
+  Verify that \(E(s^2_2)=N\sigma^2/(N-1)\), where \(N=6\).
+\end{enumerate}
+
+\emph{See also Tables 6.1 and 6.2 in the Textbook, and Exercise 6.56}
+\end{frame}
+
+\begin{frame}{Exercise 4}
+\protect\hypertarget{exercise-4-3}{}
+The problem suggests that the sampling is without replacement (the work
+group should be formed by two persons). There are different 15 work
+groups, with ages \[
+\begin{array}{c|cccccc}
+&2 & 4 & 6 & 6&7 & 8\\ \hline
+2  & -- & (2,4) & (2,6) & (2,6) & (2,7) &(2,8)\\
+ 4  &-- &--  & (4,6) & (4,6) & (4,7) &(4,8)\\
+ \vdots  &-- &--  & -- & \ddots & \cdots &\vdots 
+\end{array} 
+\] We consider only the element above the main diagonal, because the
+matrix is symmetric and on the main diagonal we would have work groups
+made of one person.
+\end{frame}
+
+\begin{frame}{(a) Compute the population mean \(\mu_X\) and the
+population variance \(\sigma_X^2\).}
+\protect\hypertarget{a-compute-the-population-mean-mu_x-and-the-population-variance-sigma_x2.}{}
+\[\mu_X=\frac{2+4+6+6+7+8}{6}=5.5\] and
+\[\sigma^2_X=\frac{(2-\mu_X)^2+\cdots (8-\mu_x)^2}{6}=23.5/6=3.916667.\].
+\end{frame}
+
+\begin{frame}{(b) Compute the sampling distribution of \(\bar{X}_2\).}
+\protect\hypertarget{b-compute-the-sampling-distribution-of-barx_2.}{}
+\[
+\begin{array}{c|ccccccccc}
+\bar{x}_2 & 3 & 4 & 4.5 & 5&  5.5 & 6 & 6.5 & 7& 7.5\\\hline
+p(\bar{x}_2) & 1/15 & 2/15 & 1/15 & 3/15 & 1/15 & 2/15 & 2/15 & 2/15 & 1/15
+\end{array}
+\]
+\end{frame}
+
+\begin{frame}{(c) Compute the expectation of \(\bar{X}_2\) using the
+above sampling distribution and compare it with \(\mu_X\).}
+\protect\hypertarget{c-compute-the-expectation-of-barx_2-using-the-above-sampling-distribution-and-compare-it-with-mu_x.}{}
+\[
+\sum_{j=1}^9 \bar{x}_{2,j}p(\bar{x}_{2,j})=5.5
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  The estimator is unbiased.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{(d) Compute the variance of \(\bar{X}_2\) using the
+sampling distribution computed above. Compare your result with
+\(\sigma^2_X/2\), which would compute the variance of \(\bar{X}_2\) if
+\(\{X_1,X_2\}\) was a simple random sample.}
+\protect\hypertarget{d-compute-the-variance-of-barx_2-using-the-sampling-distribution-computed-above.-compare-your-result-with-sigma2_x2-which-would-compute-the-variance-of-barx_2-if-x_1x_2-was-a-simple-random-sample.}{}
+\[
+\sum_{j=1}^9 (\bar{x}_{2,j}-\mu_X)^2p(\bar{x}_{2,j})=\frac{23.5}{15}=1.566667
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Note that we should not apply the formula \(\sigma^2_X/2=23.5/12\) but
+  we should apply the finite population correction factor. \[
+  \frac{\sigma^2_X}{2}\frac{N-n}{N-1}=\frac{23.5}{12}\frac{4}{5}=\frac{23.5}{15}
+  \]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{(e) Compute the sampling distribution of \(s^2_2\).}
+\protect\hypertarget{e-compute-the-sampling-distribution-of-s2_2.}{}
+\[
+\begin{array}{c|ccccccc}
+s^2_2 
+& 0.0 &   0.5  &  2.0 & 4.5  &  8 & 12.5 &  18\\ \hline
+p(s^2_2) & 1/15 & 3/15 & 5/15 &  1/15 & 3/15 & 1/15 & 1/15
+\end{array}
+\]
+\end{frame}
+
+\begin{frame}{(f) Compute the expectation of \(s^2_2\) using the above
+sampling distribution and compare it with \(\sigma^2_X\).}
+\protect\hypertarget{f-compute-the-expectation-of-s2_2-using-the-above-sampling-distribution-and-compare-it-with-sigma2_x.}{}
+\[
+\sum_{j=1}^7 s^2_{2,j}p(s^2_{2,j})=5.5
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  The estimator is biased.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{(g) Verify that \(E(s^2_2)=N\sigma^2/(N-1)\), where
+\(N=6\).}
+\protect\hypertarget{g-verify-that-es2_2nsigma2n-1-where-n6.}{}
+Multiplying the number above by \(5/6\) we get \(\sigma^2_X\).
 \end{frame}
 
 \end{document}
