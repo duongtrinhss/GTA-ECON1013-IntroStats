@@ -36,13 +36,13 @@ header-includes:
 
 \vspace{3mm}
 
-<!-- + ECON1013-TU04 -->
-<!--   + Monday 12-1 pm -->
-<!--   + 4 sessions (22-Jan, 5-Feb, 19-Feb, 4-March) -->
-  
-<!-- + ECON1013-TU07 -->
-<!--   + Tuesday 2-3 pm -->
-<!--   + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March) -->
++ ECON1013-TU04
+  + Monday 12-1 pm
+  + 4 sessions (22-Jan, 5-Feb, 19-Feb, 4-March)
+
++ ECON1013-TU07
+  + Tuesday 2-3 pm
+  + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March)
 
 + ECON1013-TU08
   + Tuesday 3-4 pm
@@ -60,7 +60,7 @@ library(knitr)
 knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU1-2324/pictures/QRcodeAtd_TU07.png")
 ```
 
-```{r, echo=FALSE, eval=TRUE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
 library(knitr)
 knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU1-2324/pictures/QRcodeAtd_TU08.png")
 ```
