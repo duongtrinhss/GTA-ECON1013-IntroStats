@@ -47,13 +47,13 @@ options(knitr.table.format = function() {
 
 \vspace{3mm}
 
-<!-- + ECON1013-LB04 -->
-<!--   + Monday 1-2 pm -->
-<!--   + 3 sessions (29-Jan, 12-Feb, 26-Feb) -->
-  
-<!-- + ECON1013-LB05 -->
-<!--   + Tuesday 12-1 pm -->
-<!--   + 3 sessions (30-Jan, 13-Feb, 27-Feb) -->
++ ECON1013-LB04
+  + Monday 1-2 pm
+  + 3 sessions (29-Jan, 12-Feb, 26-Feb)
+
++ ECON1013-LB05
+  + Tuesday 12-1 pm
+  + 3 sessions (30-Jan, 13-Feb, 27-Feb)
 
 + ECON1013-LB06
   + Tuesday 1-2 pm
@@ -73,7 +73,7 @@ library(knitr)
 knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/QRcodeAtd_LB05.png")
 ```
 
-```{r, echo=FALSE, eval=TRUE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
 library(knitr)
 knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB1-2324/pictures/QRcodeAtd_LB06.png")
 ```
