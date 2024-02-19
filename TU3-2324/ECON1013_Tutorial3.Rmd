@@ -1,0 +1,308 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "Spring 2024"
+institute: University of Glasgow
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  slidy_presentation: default
+  ioslides_presentation: default
+  pdf_document: default
+subtitle: 'ECON1013: TUTORIAL 3'
+fontsize: 11pt
+geometry: left = 1cm, right = 0.5cm, top = 0.5cm, bottom = 0.5cm
+linestretch: 1.5
+linkcolor: blue
+header-includes:
+- \titlegraphic{\includegraphics[scale=0.05]{pictures/GlaLogo.pdf}}
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{array}
+- \usepackage{longtable}
+- \setbeamertemplate{itemize item}{$\diamond$}
+- \setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+- \setbeamertemplate{itemize subsubitem}{\scriptsize$\gg$}
+- \definecolor{blue}{RGB}{0,114,178}
+- \definecolor{red}{RGB}{213,94,0}
+- \definecolor{yellow}{RGB}{240,228,66}
+- \definecolor{green}{RGB}{0,158,115}
+---
+
+## Intro
+
++ Duong Trinh
+  + PhD Student in Economics (Bayesian Microeconometrics)
+  + Email: \underline{Duong.Trinh@glasgow.ac.uk}
+
+\vspace{3mm}
+
++ ECON1013-TU04
+  + Monday 12-1 pm
+  + 4 sessions (22-Jan, 5-Feb, 19-Feb, 4-March)
+
++ ECON1013-TU05
+  + Tuesday 12-1 pm
+  + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March)
+
++ ECON1013-TU07
+  + Tuesday 2-3 pm
+  + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March)
+
+## Record Attendance
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU3-2324/pictures/QRcodeAtd_TU04.png")
+```
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU3-2324/pictures/QRcodeAtd_TU05.png")
+```
+
+```{r, echo=FALSE, eval=FALSE, out.width='80%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU3-2324/pictures/QRcodeAtd_TU07.png")
+```
+
+# BRIEF REVIEW
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU3-2324/pictures/CI_BriefReview.png")
+```
+
+## Exercise 1
+
+**Redfield \& Wilton Strategies**
+
++ Population Sampled: Eligible Voters in Scotland.
++ Sample Size: $1,054$
++ $51\%$ of survey respondents now say they would vote "`No`".
+
+(a) Compute the margin of error (ME) of the proportion saying "`No`" at the $95\%$ confidence level.
+(b) Compute the confidence interval at the $95\%$ level.
+(c) Suppose I read from somewhere that the ME of that same survey is $2.5\%$. Is this ME at a higher or at a lower confidence level?
+
+## Exercise 1
+
+**Ipsos**
+
++ Population Sampled: Eligible Voters in Scotland.
++ Sample Size: $1,004$
++ 54% of voters back "`Yes`" $\rightarrow$ The fraction for "`No`" in the Ipsos poll is $0.46$.
+
+(d) Compute the margin of error (ME) of the proportion saying "`No`" at the $95\%$ confidence level. 
+(e) What is your view on the differences between the two polls?
+
+## Where are we in?
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU3-2324/pictures/CI_BriefReview-Ex1.png")
+```
+
+## (a) Compute the margin of error (ME) of the proportion saying "`No`" at the $95\%$ confidence level.
+
+The formula for the margin of error for a population proportion $\hat{p}$ is given by
+
+$$
+\color{red}{ME = z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}}
+$$
+
++ $z_{\frac{\alpha}{2}}$: the value which cuts off $(\frac{\alpha}{2})\cdot 100\%$ of the probability mass in the right tail for a variable following a standard normal distribution.
+  + Because the confidence level is $1-\alpha=0.95$, we have that $\alpha=0.05$ and $\frac{\alpha}{2}=0.025$.
+  
++ Compute $z_{0.025}$
+  + Looking at a statistical table: $z_{0.025} = 1.96$, OR
+  + Using `Excel` function: $=\text{NORM.INV}(0.975,0,1)$
+
+## (a) Compute the margin of error (ME) of the proportion saying "`No`" at the $95\%$ confidence level.
+Plugging in $z_{0.025} = 1.96$, the sample size $n = 1054$ and the sample proportion $\hat{p} = 0.51$, we find
+$$
+ME = 1.96 \sqrt{\frac{0.51(1-0.51)}{1054}} = 1.96 \cdot{0.0153} \approx 0.03
+$$
+
+$\Rightarrow$ The margin of error is approximately $3\%$ at the $95\%$ confidence level.
+
+## (b) Compute the confidence interval at the $95\%$ level.
+
+The confidence interval is given by
+$$
+\hat{p} \pm ME
+$$
+
+$0.51 \pm 0.03$ gives the interval $[0.48,0.54]$.
+
+## (c) Suppose I read from somewhere that the ME of that same survey is $2.5\%$. Is this ME at a higher or at a lower confidence level?
+
++ Confidence level = $1-\alpha$
+
+\quad\quad\quad $\alpha$ is smaller $\Leftrightarrow$ Confidence level is higher.
+
++ $ME = z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
+
+\quad\quad\quad $\alpha$ is smaller $\Leftrightarrow$ $z_{\frac{\alpha}{2}}$ is $\ldots$ $\Leftrightarrow$ ME is $\ldots$.
+
+## {-}
+
+If we compare $z_{\frac{\alpha}{2}}$ for different values of $\alpha$, we see the following:
+
+$z_{\frac{0.10}{2}} = 1.64$,
+
+$z_{\frac{0.05}{2}} = 1.96$,
+
+$z_{\frac{0.01}{2}} = 2.58$,
+
+We see that when $\alpha$ is smaller, $z_{\frac{\alpha}{2}}$ is bigger.
+
+## (c) Is this $ME=2.5\%$ at a higher or at a lower confidence level?
+
++ Confidence level = $1-\alpha$
+
+\quad\quad\quad $\alpha$ is smaller $\Leftrightarrow$ Confidence level is higher. \quad\quad  (1)
+
++ $ME = z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
+
+\quad\quad\quad $\alpha$ is smaller $\Leftrightarrow$ $z_{\frac{\alpha}{2}}$ is bigger $\Leftrightarrow$ ME is larger. \quad  (2)
+
+\pause
+
++ From (1) and (2)
+
+\quad\quad\quad \textcolor{red}{ME is larger} $\color{red}{\Leftrightarrow}$ \textcolor{red}{Confidence level is higher.}
+
+\pause
+
+Since we found $\text{ME} = 3\%$ at the $95\%$ confidence level, when ME is $2.5\%$ (lower), the confidence level has to be **lower**.
+
+## (d) Compute the margin of error (ME) of the proportion saying "`No`" at the $95\%$ confidence level. 
+
+\pause
+
++ The margin of error
+
+$$
+\color{red}{ME = z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}}
+$$
+
+$$
+\Rightarrow ME = 1.96 \sqrt{\frac{0.46(1-0.46)}{1004}} \approx 0.031
+$$
+
++ The $95\%$ confidence level is approximately $[0.429,0.491]$.
+
+## (e) What is your view on the differences between the two polls?
+
+\pause
+
++ The confidence intervals are clearly different: $[0.429, 0.491]$ is different from $[0.48, 0.54]$, and in this sense, the estimates do differ.
+
++ However, at the same time, the intervals overlap (for example, $49\%$ is contained in both), so they are not necessarily making different statements about the population parameter.
+
++ **Remark**: There exist statistical tests to determine whether *two sample averages* are different from each other in a statistically
+significant way. We will learn about statistical testing procedures
+in Unit 5.
+
+## Exercise 2
+
+The government introduces a housing benefit of $100$ pounds per month for low-income households.
+
+After the introduction of the policy, we collect a sample of rents paid
+by $31$ low-income households: $(r_1, r_2, \ldots , r_{31})$. In this sample, the
+sample average rent is $\bar{r} = 709$ pounds. In this sample, the standard
+deviation is $s_r = 34$.
+
+(a) Construct the margin of error for $\bar{r}$.
+(b) Construct the $95\%$ confidence interval for $\bar{r}$.
+(c) We know that the average rent paid by low-income households, prior to the reform, was $700$ pounds. Is this value, $700$, still a likely population rent after the reform, based on the sample?
+
+## Where are we in?
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/TU3-2324/pictures/CI_BriefReview-Ex2.png")
+```
+
+## (a) Construct the margin of error for $\bar{r}$.
+
+The margin of error of the sample mean for a sample of size $n$, when the population standard deviation is not known, is given by
+
+$$
+\color{red}{ME = t_{n-1, \frac{\alpha}{2}} \frac{s}{\sqrt{n}}}
+$$
+
++ $t_{n-1, \frac{\alpha}{2}}$: the value which cuts off $(\frac{\alpha}{2})\cdot 100\%$ of the probability mass in the right tail for a variable following a t-distribution with $n-1$ degrees of freedom.
+  + We use the Student’s t distribution with $n-1$ degrees of freedom.
+  + Because $1-\alpha=0.95$, we have that $\alpha=0.05$ and $\frac{\alpha}{2}=0.025$. 
++ Calculate $t_{30, 0.025}$:
+  + Looking at a statistical table: $t_{30, 0.025} = 2.042$, OR
+  + Using `Excel` function: $=\text{T.INV}(0.975,30)$
+
+## (a) Construct the margin of error for $\bar{r}$.
+
+Plugging in $t_{30, 0.025} = 2.042$, the sample size $n = 31$ and the sample standard deviation $s = 34$, we find
+
+$$
+ME = 2.042 \times \frac{34}{\sqrt{31}} \approx 12.47
+$$
+
+## (b) Construct the $95\%$ confidence interval for $\bar{r}$.
+
+\pause
+
+$\bar{r} =709$ $\Rightarrow$ $\bar{r} \pm 12.47$ give the confidence interval $[696.5,721.5]$.
+
+## (c) We know that the average rent paid by low-income households, prior to the reform, was $700$ pounds. Is this value, $700$, still a likely population rent after the reform, based on the sample?
+
+\pause
+
+$700$ is contained in the $95\%$ confidence interval. Therefore we don’t have very strong evidence suggesting that $700$ is not a possible value for the population mean after the reform, at the $95\%$ confidence level. 
+
+# EXCEL NOTE
+
+## Relevant functions (I)
+
+\normalsize
+Launch the **Excel** online 
+
+\footnotesize
+\textcolor{blue}{https://www.office.com/launch/excel?auth=2}
+
+\vspace{3mm}
+
+\normalsize
+\textcolor{red}{NORM.INV()}
+\footnotesize
+To return the inverse of the normal cumulative distribution for the specified mean and standard deviation (*real number*).
+```{text}
+= NORM.INV(probability,mean,standard_dev)
+```
+
+\normalsize
+\textcolor{red}{T.INV()}
+\footnotesize
+To return the t-value of the Student's t-distribution as a function of the probability and the degrees of freedom (*real number*).
+```{text}
+= T.INV(probability,degrees_freedom)
+```
+
+## Relevant functions (II)
+
+\normalsize
+Launch the **Excel** online 
+
+\footnotesize
+\textcolor{blue}{https://www.office.com/launch/excel?auth=2}
+
+\vspace{3mm}
+
+\normalsize
+\textcolor{red}{NORMSDIST()}
+\footnotesize
+To return the standard normal cumulative distribution (*probability*).
+```{text}
+= NORMSDIST(z)
+```
