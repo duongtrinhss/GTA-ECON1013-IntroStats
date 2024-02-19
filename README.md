@@ -1,4 +1,7 @@
 # GTA-ECON1013-IntroStats
+
+## Course Description
+
 Introductory Statistics for Economics
 
 ## TUTORIAL - Slides
