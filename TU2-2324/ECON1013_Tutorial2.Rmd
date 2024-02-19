@@ -1,7 +1,7 @@
 ---
 title: "Introductory Statistics for Economics"
 author: "Duong Trinh"
-date: "Spring 2024"
+date: "Feb 2024"
 institute: University of Glasgow
 output:
   beamer_presentation:

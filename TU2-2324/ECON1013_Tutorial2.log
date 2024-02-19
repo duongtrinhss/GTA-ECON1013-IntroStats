@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.27)  6 FEB 2024 10:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.9)  19 FEB 2024 21:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1049,14 +1049,14 @@ Package rerunfilecheck Info: File `ECON1013_Tutorial2.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  22675 strings out of 476188
- 440846 string characters out of 5794591
+ 440846 string characters out of 5794592
  1933975 words of memory out of 5000000
  44059 multiletter control sequences out of 15000+600000
  630040 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  101i,11n,107p,414b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss10.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss12.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsso12.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsso8.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/duongtrinh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on ECON1013_Tutorial2.pdf (43 pages, 566602 bytes).
+Output written on ECON1013_Tutorial2.pdf (43 pages, 566593 bytes).
 PDF statistics:
  478 PDF objects out of 1000 (max. 8388607)
  372 compressed objects within 4 object streams
