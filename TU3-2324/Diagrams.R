@@ -1,4 +1,5 @@
 library(DiagrammeR)
+library(htmltools)
 
 add_mathjax(
   grViz(
@@ -97,7 +98,6 @@ add_mathjax(
       "
   )
 )
-
 
 ## Ex2 ====
 

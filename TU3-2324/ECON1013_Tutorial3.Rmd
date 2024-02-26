@@ -1,7 +1,7 @@
 ---
 title: "Introductory Statistics for Economics"
 author: "Duong Trinh"
-date: "Spring 2024"
+date: "Feb 2024"
 institute: University of Glasgow
 output:
   beamer_presentation:
@@ -97,7 +97,7 @@ knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-Int
 (d) Compute the margin of error (ME) of the proportion saying "`No`" at the $95\%$ confidence level. 
 (e) What is your view on the differences between the two polls?
 
-## Where are we in?
+## Where we currently are
 
 ```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
 library(knitr)
@@ -219,7 +219,7 @@ deviation is $s_r = 34$.
 (b) Construct the $95\%$ confidence interval for $\bar{r}$.
 (c) We know that the average rent paid by low-income households, prior to the reform, was $700$ pounds. Is this value, $700$, still a likely population rent after the reform, based on the sample?
 
-## Where are we in?
+## Where we currently are
 
 ```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
 library(knitr)
