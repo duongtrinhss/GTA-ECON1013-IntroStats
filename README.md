@@ -30,7 +30,9 @@ Introductory Statistics for Economics
 
    + Topics covered: Descriptive Statistics; Sampling Distribution; Probability Calculation.
 
-3. Lab 3
+3. [Lab 3](https://nbviewer.org/github/duongtrinhss/GTA-ECON1013-IntroStats/blob/main/LAB3-2324/ECON1013-Lab3.pdf)
+
+   + Topics covered: Estimation; Simulation; Hypothesis Tests.
 
 ## R LAB - Slides (21-22)
 
