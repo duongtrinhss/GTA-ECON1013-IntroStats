@@ -1,0 +1,508 @@
+---
+title: "Introductory Statistics for Economics"
+author: "Duong Trinh"
+date: "Feb 2024"
+institute: University of Glasgow
+output:
+  beamer_presentation:
+    keep_tex: yes
+    slide_level: 2
+  # slidy_presentation: default
+  # ioslides_presentation: default
+  pdf_document: default
+subtitle: 'ECON1013: LAB 3'
+fontsize: 10pt
+geometry: left = 1cm, right = 0.5cm, top = 0.5cm, bottom = 0.5cm
+linestretch: 1.5
+# linkcolor: blue
+header-includes:
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{array}
+- \usepackage{longtable}
+- \usepackage{makecell}
+- \useinnertheme{rectangles}
+- \setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+- \definecolor{blue}{RGB}{0,114,178}
+- \definecolor{red}{RGB}{213,94,0}
+- \definecolor{yellow}{RGB}{240,228,66}
+- \definecolor{green}{RGB}{0,158,115}
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(knitr.table.format = function() {
+  if (knitr::is_latex_output()) 'latex' else 'pandoc'
+})
+```
+
+## Intro
+
++ Duong Trinh
+  + PhD Student in Economics (Bayesian Microeconometrics)
+  + Email: \underline{Duong.Trinh@glasgow.ac.uk}
+
+\vspace{3mm}
+
++ ECON1013-LB04
+  + Monday 1-2 pm
+  + 3 sessions (29-Jan, 12-Feb, 26-Feb)
+
++ ECON1013-LB05
+  + Tuesday 12-1 pm
+  + 3 sessions (30-Jan, 13-Feb, 27-Feb)
+
++ ECON1013-LB06
+  + Tuesday 1-2 pm
+  + 3 sessions (30-Jan, 13-Feb, 27-Feb)
+
+\vspace{3mm}
+
+## Record Attendance
+
+```{r, echo=FALSE, eval=FALSE, out.width='60%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB2-2324/pictures/QRcodeAtd_LB04.png")
+```
+
+```{r, echo=FALSE, eval=FALSE, out.width='60%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB2-2324/pictures/QRcodeAtd_LB05.png")
+```
+
+```{r, echo=FALSE, eval=FALSE, out.width='60%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB2-2324/pictures/QRcodeAtd_LB06.png")
+```
+
+## Setup
+
++ Step 1: Download Lab materials from **Moodle** page $\rightarrow$ Extract the folder in PC.
+
++ Step 2: Log in **Microsoft onedrive** using your student account \textcolor{blue}{https://onedrive.live.com/login/} and upload the folder above.
+  
++ Step 3: Launch the **Excel** online  \textcolor{blue}{https://www.office.com/launch/excel?auth=2}, which we will use for all lab sessions.
+
+# Exercise 1. Confidence intervals.
+
++ Data set: \texttt{testscores.xls}
++ About: A sample ($n=200$) of student test scores in Math and English
+  + Minimal text score is 0 and maximal test score is 100.
+  
+## Part 1. Confidence interval for the mean ($\sigma$ known).
+
+We know that the population standard deviation $\sigma_\mu$ for variable “English” is equal to $4.6$.
+
+1. Find the sample mean for the variable “English”.
+
+2. Find the standard error of the sample mean for the variable “English”.
+
+3. Find the margin of error at the $95\%$ confidence level.
+
+4. Find the $95\%$ confidence interval for the mean.
+
+Hint: $SE=0.33$, $ME=0.64$.
+
+## Where we currently are
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB3-2324/pictures/EstimationGuide-Case1.png")
+```
+
+
+## Part 2. Confidence interval for the mean ($\sigma$ unknown).
+
+We do not know the population standard deviation $\sigma_\mu$ for the variable “Math”.
+
+1. Find the sample mean of variable “Math”.
+
+2. Find the sample standard deviation of variable “Math”, denote as $s$.
+
+3. Find (an estimate) for the standard error of the sample mean using $s$.
+
+4. Find the margin of error at the $95\%$ confidence level.
+
+5. Find the $95\%$ confidence interval for the mean.
+  
+Hint: $\widehat{SE}=0.93$, $ME=1.83$.
+
+## Where we currently are
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB3-2324/pictures/EstimationGuide-Case2.png")
+```
+
+# Exercise 2. Confidence intervals.
+
+## Part 1. Confidence intervals.
+Behave "as if" we did not know that the population mean is 2 and population variance is 1.
+
+For each of the $10$ samples, construct the $90\%$ confidence interval for the sample mean.
+
+## Where we currently are
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB3-2324/pictures/EstimationGuide-Case2.png")
+```
+
+## Part 2. Coverage.
++ Now, we use again our knowledge about the true population mean. Using this information, fill in the blue row, indicating whether the confidence interval contains the true population mean (2).
+
++ Update the table a few times (for example, by refreshing the website) to see what happens. How often is the true population mean contained in the confidence interval?
+
+
+# Exercise 3. Hypothesis testing.
+
++ Data set: \texttt{testscores.xls}
+  + About: A sample ($n=200$) of student test scores in Math and English, drawn from a larger population.
+  + We know that the population standard deviation $\sigma_\mu$ for variable "English" is equal to $4.6$.
+
+\vspace{3mm}
++ We want to test the following hypothesis at the $5\%$ significance level:
+  + $H_0:$ The population mean for variable "English" is equal to $73.5$.
+  + $H_1:$ The population mean for variable "English" is different from $73.5$.
+Run the test using either the "critical values approach" or the "p-value approach" depending on what you prefer.
+
+## Where we currently are
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB3-2324/pictures/HypothesisTestsGuide-Case1.png")
+```
+
+
+## Tests of the Mean of a Normal Distribution Sigma Known
+
+Procedure includes 5 steps:
+
++ Null hypothesis $H_0$
++ Alternative hypothesis $H_1$
++ Test statistic
++ Decision rule
++ Conclusion
+
+## Tests of the Mean of a Normal Distribution Sigma Known
+
+Denote $\mu$ the true population mean of English score.
+
+\begin{itemize}
+    \item [$\square$] Null hypothesis $H_0$:\\
+      $H_0$: The population mean of "English" is equal to $73.5$.\\  
+      $H_0$: $\mu = 73.5$
+    \vspace{2mm}
+    \item [$\square$] Alternative hypothesis $H_1$:\\
+      $H_1$: The population mean of "English" is different from $73.5$.\\  
+      $H_1$: $\mu \neq 73.5$
+    \vspace{2mm}
+    \item Test statistic
+    \item Decision rule
+    \item Conclusion
+\end{itemize}
+
+## Tests of the Mean of a Normal Distribution Sigma Known
+
+Denote $\mu$ the true population mean of English score.
+
+\begin{itemize}
+    \item [$\square$] Null hypothesis $H_0$:\\
+      $H_0$: The population mean of "English" is equal to $73.5$.\\  
+      $H_0$: $\mu = 73.5$
+    \vspace{2mm}
+    \item [$\square$] Alternative hypothesis $H_1$:\\
+      $H_1$: The population mean of "English" is different from $73.5$.\\  
+      $H_1$: $\mu \neq 73.5$\\
+      $\Rightarrow$ This is a two-tailed test.
+    \vspace{2mm}
+    \item Test statistic
+    \item Decision rule
+    \item Conclusion
+\end{itemize}
+
+## Test statistic
+
+Given the sample size and the sampling scheme, the sample average is asymptotically normally distributed:
+$$
+Z =\frac{\bar{X}-\mu_0}{\sigma/\sqrt{n}} \sim N(0,1)
+$$
+
+We compute the z-score of the observation:
+$$
+z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} = \frac{73.74-73.5}{4.6/\sqrt{200}} \approx 0.738
+$$
+
+## Decision Rule  
+\begin{itemize}
+    \item We are conducting a two-tailed test (\textit{look again $H_1$})\\
+    \item The significance level $\alpha$ = 0.05\\
+    \item Is the decision rule based on \textcolor{green}{\textbf{critical values}} or \textcolor{red}{\textbf{p-value}}?\\
+\end{itemize}
+
+## Decision Rule - (1) Critical values approach
+
+For two-tailed test, reject $H_0$ if
+
+$$
+z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} < -z_{\frac{\alpha}{2}} \text{ or } z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} > z_{\frac{\alpha}{2}}
+$$
+
+\vspace{2mm}
+
++ Compute critical value:  
+  $z_{\frac{\alpha}{2}} = z_{\frac{0.05}{2}} = z_{0.025} = 1.96$  
+  (`Excel` function: $=\text{NORM.INV}(0.975,0,1)$).
+
+\vspace{2mm}
+
++ Compare test statistic to critical value:  
+  Notice that $z \approx 0.738$, which is  greater than $-1.96$ ($-z_{0.025}$) and less than $1.96$ ($z_{0.025}$)  
+  $\Rightarrow$ We DO NOT reject $H_0$ at $\alpha = 0.05$.
+
+## Decision Rule - (2) P-value approach
+
+P-value corresponds to the probability of finding something more extreme than the observed result, under the assumption that the null hypothesis is true.
+
+\vspace{2mm}
+
+For two-tailed test, reject $H_0$ if $p-value \leq \alpha$.
+
+\vspace{2mm}
+
++ Compute p-value associated with the test statistics $z \approx 0.738$:
+$$
+p-value = \text{Pr}(Z \leq -0.738) + \text{Pr}(Z \geq 0.738) \approx 2\times 0.23 = 0.46
+$$
+(`Excel` function: $=\text{NORM.DIST}(-0.738,0,1,\text{TRUE})$)
+
++ Compare test statistic to the chosen $\alpha$: 
+  The p-value ($0.46$) is larger than $\alpha = 0.05$.
+  $\Rightarrow$ We DO NOT reject $H_0$ at $\alpha = 0.05$ (the same as Critical values approach).
+
+## Decision Rule - Two Equivalent Approaches
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB3-2324/pictures/Two-tailedTestRule.png")
+```
+
+## Conclusion
+
+We maintain the null hypothesis. We do not reject the claim that the population mean is equal to 73.5.
+
+# BRIEF REVIEW
+
+## Estimation
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB3-2324/pictures/EstimationGuide.png")
+```
+
+## Hypothesis Testing
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB3-2324/pictures/HypothesisTestObj.png")
+```
+
+## Hypothesis Testing
+
+General procedure includes 5 steps:
+
++ Null hypothesis $H_0$
++ Alternative hypothesis $H_1$
++ Test statistic
++ Decision rule
++ Conclusion
+
+## Hypothesis Testing
+
+```{r, echo=FALSE, out.width='90%', fig.show='hold', fig.align='center', fig.pos = 'H'}
+library(knitr)
+knitr::include_graphics("/Users/duongtrinh/Dropbox/GTA/ECON1013/GTA-ECON1013-IntroStats/LAB3-2324/pictures/HypothesisTestsGuide.png")
+```
+
+## Tests of the Mean of a Normal Distribution Sigma Known
+
+Procedure includes 5 steps:
+
++ Null hypothesis $H_0$
++ Alternative hypothesis $H_1$
++ Test statistic
++ Decision rule
++ Conclusion
+
+## Tests of the Mean of a Normal Distribution Sigma Known
+
+Procedure includes 5 steps:
+\begin{itemize}
+    \item [$\square$] Null hypothesis $H_0$:\\
+    $$
+    H_0: \mu = \mu_{0}
+    $$
+    where $\mu_{0}$ is a hypothesized value.
+    \item Alternative hypothesis $H_1$
+    \item Test statistic
+    \item Decision rule
+    \item Conclusion
+\end{itemize}
+
+## Tests of the Mean of a Normal Distribution Sigma Known
+
+Procedure includes 5 steps:
+\begin{itemize}
+    \item [$\square$] Null hypothesis $H_0$:\\
+    $$
+    H_0: \mu = \mu_{0}
+    $$
+    where $\mu_{0}$ is a hypothesized value.
+    \item [$\square$] Alternative hypothesis $H_1$:
+    \vspace{2mm}
+    \begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    Test & $H_1$\\
+    \hline
+    Two-sided &  $\mu \neq \mu_{0}$ \\
+    \hline 
+    Lower-tail & $\mu < \mu_{0}$\\
+    \hline 
+    Upper-tail & $\mu > \mu_{0}$\\ 
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{2mm}
+    \item Test statistic
+    \item Decision rule
+    \item Conclusion
+\end{itemize}
+
+## Tests of the Mean of a Normal Distribution Sigma Known
+
+Procedure includes 5 steps:
+\begin{itemize}
+    \item Null hypothesis $H_0$
+    \item Alternative hypothesis $H_1$
+    \item Test statistic
+    \item [$\square$] Decision rule:
+    \begin{itemize}
+        \item Is this a two-sided test or an one-sided (lower-tail/upper-tail) test?\\
+        $\Longrightarrow$ Look again $H_1$.
+        \item What is the \textbf{significance level} $\alpha$?\\
+        $\Longrightarrow$ Usually chosen to be 0.01, 0.05 or 0.10.
+        \item Is the decision rule based on \textcolor{green}{\textbf{critical values}} or \textcolor{red}{\textbf{p-value}}?\\
+        $\Longrightarrow$ Distinguish...
+    \end{itemize}
+    \item Conclusion
+\end{itemize}
+
+## Decision Rule - Two Equivalent Approaches
+
+\begin{center}
+Approach 1: \textcolor{green}{\textbf{Critical-value Test}}\\
+\vspace{3mm}
+\begin{tabular}{|c|c|c|}
+\hline
+Test & $H_1$ & Reject $H_0$ if\\
+\hline
+Two-sided &  $\mu \neq \mu_{0}$ & $z^s < -z_{\frac{\alpha}{2}}$ or $ z^s> z_{\frac{\alpha}{2}}$\\
+\hline 
+Lower-tail & $\mu < \mu_{0}$ & $z^s < - z_{\alpha}$\\ 
+\hline 
+Upper-tail & $\mu > \mu_{0}$ & $z^s > z_{\alpha}$\\ 
+\hline
+\end{tabular}
+\end{center}
+    
+\vspace{3mm}
+    
+\begin{center}
+Approach 2: \textcolor{red}{\textbf{p-value Test}}\\
+\vspace{3mm}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Test & $H_1$ & p-value & Reject $H_0$ if\\
+\hline
+Two-sided &  $\mu \neq \mu_{0}$ & \makecell{sum probabilities to the right \\ of $|z^s|$ and to the left of $-|z^s|$} & p-value $\leq \alpha$\\
+    \hline 
+Lower-tail & $\mu < \mu_{0}$ & probability to the left of $z^s$ & p-value $\leq \alpha$\\ 
+\hline 
+Upper-tail & $\mu > \mu_{0}$ & probability to the right of $z^s$ & p-value $\leq \alpha$\\ 
+\hline
+\end{tabular}
+    
+\vspace{1mm}
+ 
+ \footnotesize   
+*Note: p-value is probability of obtaining a test statistic more extreme ($\leq$ or $\geq$) than the observed sample value given $H_0$ is true.
+\end{center}
+
+## Tests of the Mean of a Normal Distribution Sigma Known
+
+Procedure includes 5 steps:
+\begin{itemize}
+    \item Null hypothesis $H_0$
+    \item Alternative hypothesis $H_1$
+    \item Test statistic
+    \item Decision rule
+    \item [$\square$] Conclusion:
+    \begin{itemize}
+        \item Do you \textit{reject} or or \textit{fail to reject} the null hypothesis at the significance level $\alpha$?
+    \end{itemize}
+\end{itemize}
+
+# EXCEL NOTES
+
+## Relevant functions (I)
+
+\normalsize
+Launch the **Excel** online 
+
+\footnotesize
+\textcolor{blue}{https://www.office.com/launch/excel?auth=2}
+
+\vspace{3mm}
+
+\normalsize
+\textcolor{red}{NORM.INV()}
+\footnotesize
+To return the inverse of the normal cumulative distribution for the specified mean and standard deviation (*real number*).
+```{text}
+= NORM.INV(probability,mean,standard_dev)
+```
+
+\normalsize
+\textcolor{red}{T.INV()}
+\footnotesize
+To return the t-value of the Student's t-distribution as a function of the probability and the degrees of freedom (*real number*).
+```{text}
+= T.INV(probability,degrees_freedom)
+```
+
+\normalsize
+\textcolor{red}{NORMSDIST()}
+\footnotesize
+To return the standard normal cumulative distribution (*probability*).
+```{text}
+= NORMSDIST(z)
+```
+
+## Relevant functions (II)
+
+\normalsize
+Launch the **Excel** online 
+
+\footnotesize
+\textcolor{blue}{https://www.office.com/launch/excel?auth=2}
+
+\vspace{3mm}
+
+\normalsize
+\textcolor{red}{NORM.INV(RAND())}
+\footnotesize
+To draws a random variable from the normal distribution with the specified mean and standard deviation (*real number*).
+```{text}
+= NORM.INV(RAND(),mean,standard_dev)
+```
