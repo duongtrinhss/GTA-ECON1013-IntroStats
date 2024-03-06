@@ -512,10 +512,9 @@ For two-tailed test, reject \(H_0\) if \(p-value \leq \alpha\).
   \] (\texttt{Excel} function:
   \(=\text{NORM.DIST}(-0.738,0,1,\text{TRUE})\))
 \item
-  Compare test statistic to the chosen \(\alpha\): The p-value
-  (\(0.46\)) is larger than \(\alpha = 0.05\). \(\Rightarrow\) We DO NOT
-  reject \(H_0\) at \(\alpha = 0.05\) (the same as Critical values
-  approach).
+  Compare p-value to the chosen \(\alpha\): The p-value (\(0.46\)) is
+  larger than \(\alpha = 0.05\). \(\Rightarrow\) We DO NOT reject
+  \(H_0\) at \(\alpha = 0.05\) (the same as Critical values approach).
 \end{itemize}
 \end{frame}
 
@@ -683,11 +682,11 @@ Approach 2: \textcolor{red}{\textbf{p-value Test}}\\
 \hline
 Test & $H_1$ & p-value & Reject $H_0$ if\\
 \hline
-Two-sided &  $\mu \neq \mu_{0}$ & \makecell{sum probabilities to the right \\ of $|z^s|$ and to the left of $-|z^s|$} & p-value $\leq \alpha$\\
+Two-sided &  $\mu \neq \mu_{0}$ & \makecell{sum probabilities to the right \\ of $|z^s|$ and to the left of $-|z^s|$} & p-value $< \alpha$\\
     \hline 
-Lower-tail & $\mu < \mu_{0}$ & probability to the left of $z^s$ & p-value $\leq \alpha$\\ 
+Lower-tail & $\mu < \mu_{0}$ & probability to the left of $z^s$ & p-value $< \alpha$\\ 
 \hline 
-Upper-tail & $\mu > \mu_{0}$ & probability to the right of $z^s$ & p-value $\leq \alpha$\\ 
+Upper-tail & $\mu > \mu_{0}$ & probability to the right of $z^s$ & p-value $<\alpha$\\ 
 \hline
 \end{tabular}
     
