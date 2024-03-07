@@ -18,7 +18,9 @@ Introductory Statistics for Economics
 
    + Topics covered: Estimation; Confidence Interval; Margin of Error. 
    
-4. Tutorial 4
+4. [Tutorial 4](https://nbviewer.org/github/duongtrinhss/GTA-ECON1013-IntroStats/blob/main/TU4-2324/ECON1013-Tutorial4.pdf)
+
+   + Topics covered: Hypothesis Testing - Two equivalent approaches.
 
 ## EXCEL LAB - Slides (23-24)
 
