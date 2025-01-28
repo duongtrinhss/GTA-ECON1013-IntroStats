@@ -1,7 +1,7 @@
 ---
 title: "Introductory Statistics for Economics"
 author: "Duong Trinh"
-date: "Jan 2024"
+date: "2025"
 institute: University of Glasgow
 output:
   beamer_presentation:
@@ -36,17 +36,13 @@ header-includes:
 
 \vspace{3mm}
 
-+ ECON1013-TU04
-  + Monday 12-1 pm
-  + 4 sessions (22-Jan, 5-Feb, 19-Feb, 4-March)
-
-+ ECON1013-TU07
++ ECON1013 TU07
   + Tuesday 2-3 pm
-  + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March)
+  + 4 sessions (28-Jan, 11-Feb, 25-Feb, 11-March)
 
 + ECON1013-TU08
   + Tuesday 3-4 pm
-  + 4 sessions (23-Jan, 6-Feb, 20-Feb, 5-March)
+  + 4 sessions (28-Jan, 11-Feb, 25-Feb, 11-March)
 
 ## Record Attendance
 
